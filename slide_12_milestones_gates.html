@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slide 12 — Milestones & Gates</title>
+  <style>
+    :root{
+      --bg:#f8fafc;--fg:#0b1220;--muted:#64748b;--accent:#38bdf8;--accent2:#a78bfa;--ok:#10b981;--danger:#ef4444;--warn:#fb923c;--stroke:#cbd5e1;--card:#ffffff;
+    }
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.55}
+    .slide{max-width:1100px;margin:40px auto;padding:24px 28px 52px;background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:18px;box-shadow:0 6px 24px rgba(0,0,0,.08);position:relative}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+    .brand img{height:56px}
+    .brand h1{margin:0;font-size:24px;line-height:1.2;font-weight:800}
+    .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:12px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:10px;background:var(--card)}
+    .eyebrow{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+    h2{margin:6px 0 6px;font-size:16px}
+    ul{margin:0 0 6px 1.0rem;padding:0}
+    li{margin:4px 0;font-size:13px}
+    p{margin:6px 0;font-size:13px}
+    .svg-card{background:#fff;border:1px solid var(--stroke);border-radius:14px;padding:10px}
+    .svg-card h3{margin:0 0 6px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+    .svg-card svg{max-width:100%;height:220px;display:block}
+    .span2{grid-column:1 / -1}
+    .caption{font-size:11px;color:var(--muted)}
+    .callout{margin-top:6px;border-left:4px solid var(--accent);background:rgba(56,189,248,.12);padding:8px 10px;border-radius:8px;font-size:13px}
+    .badge{display:inline-block;padding:2px 6px;border-radius:999px;background:#ecfeff;border:1px solid #06b6d4;font-size:11px}
+    .pagenum{position:absolute;bottom:10px;right:14px;font-size:12px;color:var(--muted)}
+    table{width:100%;border-collapse:separate;border-spacing:0 6px}
+    th,td{font-size:12px;padding:6px 8px;background:#ffffff;border:1px solid var(--stroke)}
+    th{background:#f8fafc;color:#334155;text-align:left}
+  </style>
+</head>
+<body>
+  <main class="slide" role="document">
+    <header class="brand"><img src="fpt_logo.png" alt="FPT University logo"><h1>Milestones & Gates</h1></header>
+
+    <section class="grid">
+      <!-- Khái niệm & Mục đích -->
+      <article class="card">
+        <div class="eyebrow">Khái niệm & mục đích</div>
+        <h2>Milestone = mốc tiến độ • Gate = cổng chất lượng</h2>
+        <ul>
+          <li><strong>Milestone</strong>: mốc <em>đo/đếm được</em> để đóng tiến độ (ví dụ <em>Scope Freeze</em>, <em>Design Freeze</em>, <em>Feature Complete</em>).</li>
+          <li><strong>Gate</strong>: cổng ra‑vào chất lượng trước khi đi tiếp; yêu cầu <strong>work products</strong> & <strong>QA evidence</strong> đáp ứng tiêu chí.</li>
+          <li>Khác biệt: Milestone trả lời “<em>đã xong cái gì</em>”, Gate trả lời “<em>đủ tốt để đi tiếp chưa</em>”.</li>
+          <li>Gắn chặt với chuỗi <em>Task set → Work products → QA → Milestones</em> để tăng <strong>minh bạch</strong> & <strong>khả kiểm chứng</strong>.</li>
+        </ul>
+      </article>
+
+      <!-- Gate criteria -->
+      <article class="card">
+        <div class="eyebrow">Gate criteria</div>
+        <h2>Đo được • Quan sát được • Kiểm toán được</h2>
+        <ul>
+          <li><strong>Đầu vào</strong>: artefacts/bằng chứng phải có (thiết kế đã review, threat model cập nhật, SAST/DAST, test report, SBOM, chữ ký artefact…).</li>
+          <li><strong>Tiêu chí kiểm</strong>: checklist/metrics (0 High/Critical; coverage ≥ X%; action items đã xử lý).</li>
+          <li><strong>Kết quả</strong>: <span class="badge">Go</span> / <span class="badge">No‑Go</span> / <span class="badge">Risk Accepted</span> (có owner & hạn).</li>
+          <li><em>Qua gate ⇒ mới đóng milestone liên quan</em>. Evidence nên được gom tự động về <strong>Evidence Store</strong>.</li>
+        </ul>
+      </article>
+
+      <!-- SVG: Timeline với Gates -->
+      <div class="svg-card span2">
+        <h3 class="eyebrow">Sơ đồ — Timeline mốc & cổng (e‑Clinic: “Đặt lịch”)</h3>
+        <svg viewBox="0 0 960 230" role="img" aria-label="Milestones and gates timeline">
+          <!-- baseline timeline -->
+          <line x1="60" y1="120" x2="900" y2="120" stroke="#cbd5e1" stroke-width="2"/>
+          <text x="60" y="140" font-size="11" fill="#64748b">Tuần 1</text>
+          <text x="240" y="140" font-size="11" fill="#64748b">Tuần 2</text>
+          <text x="480" y="140" font-size="11" fill="#64748b">Tuần 5</text>
+          <text x="720" y="140" font-size="11" fill="#64748b">Tuần 8</text>
+          <text x="860" y="140" font-size="11" fill="#64748b">Tuần 10</text>
+
+          <!-- M1: Scope Freeze -->
+          <circle cx="240" cy="120" r="8" fill="#0ea5e9"/>
+          <rect x="180" y="28" width="120" height="28" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+          <text x="240" y="46" text-anchor="middle" font-size="11">M1 — Scope Freeze</text>
+          <line x1="240" y1="120" x2="240" y2="56" stroke="#94a3b8"/>
+          <text x="240" y="164" text-anchor="middle" font-size="11">SRS, NFR sơ bộ, trace REQ‑*</text>
+
+          <!-- M3 + SDR -->
+          <circle cx="480" cy="120" r="8" fill="#06b6d4"/>
+          <rect x="420" y="28" width="130" height="28" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+          <text x="485" y="46" text-anchor="middle" font-size="11">M3 — Design Freeze</text>
+          <line x1="480" y1="120" x2="480" y2="56" stroke="#94a3b8"/>
+          <!-- SDR badge -->
+          <rect x="462" y="70" width="36" height="18" rx="6" fill="#fff" stroke="#06b6d4"/>
+          <text x="480" y="83" text-anchor="middle" font-size="10">SDR</text>
+          <text x="480" y="164" text-anchor="middle" font-size="11">ADR, API, Threat model</text>
+
+          <!-- M4 + Bug Bar -->
+          <circle cx="720" cy="120" r="8" fill="#10b981"/>
+          <rect x="660" y="28" width="130" height="28" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+          <text x="725" y="46" text-anchor="middle" font-size="11">M4 — Feature Complete</text>
+          <line x1="720" y1="120" x2="720" y2="56" stroke="#94a3b8"/>
+          <!-- Bug Bar badge -->
+          <rect x="702" y="70" width="56" height="18" rx="6" fill="#fff" stroke="#0ea5e9"/>
+          <text x="730" y="83" text-anchor="middle" font-size="10">Bug Bar</text>
+          <text x="720" y="164" text-anchor="middle" font-size="11">Tests, SAST/DAST, SBOM</text>
+
+          <!-- FSR + Go-Live -->
+          <circle cx="860" cy="120" r="8" fill="#fb923c"/>
+          <rect x="820" y="28" width="90" height="28" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+          <text x="865" y="46" text-anchor="middle" font-size="11">FSR</text>
+          <line x1="860" y1="120" x2="860" y2="56" stroke="#94a3b8"/>
+          <!-- decision badges -->
+          <rect x="840" y="70" width="40" height="18" rx="6" fill="#fff" stroke="#10b981"/>
+          <text x="860" y="83" text-anchor="middle" font-size="10">Go</text>
+          <rect x="820" y="92" width="40" height="18" rx="6" fill="#fff" stroke="#ef4444"/>
+          <text x="840" y="105" text-anchor="middle" font-size="10">No‑Go</text>
+          <rect x="880" y="92" width="60" height="18" rx="6" fill="#fff" stroke="#fb923c"/>
+          <text x="910" y="105" text-anchor="middle" font-size="10">Risk Acc.</text>
+
+          <!-- Evidence store strip -->
+          <rect x="120" y="184" width="700" height="24" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+          <text x="470" y="200" text-anchor="middle" font-size="11">Evidence Store — review notes • test reports • SBOM • signatures • audit logs</text>
+        </svg>
+        <div class="caption">Các cổng bảo mật đặt đúng pha: <strong>SDR</strong> tại Design Freeze, <strong>Bug Bar</strong> tại Feature Complete, <strong>FSR</strong> ngay trước Go‑Live. Quyết định cuối cùng dựa trên <em>evidence</em> tích lũy.</div>
+      </div>
+
+      <!-- Bảng ví dụ M1/M3/M4 -->
+      <article class="card span2">
+        <div class="eyebrow">Ví dụ dàn mốc</div>
+        <h2>M1 • M3 • M4 — Định nghĩa Done & cổng</h2>
+        <table>
+          <thead><tr><th>Mốc</th><th>Định nghĩa Done</th><th>Gate tiêu biểu</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>M1 — Scope Freeze</strong></td>
+              <td>SRS/BRD rút gọn ký duyệt; NFR sơ bộ (hiệu năng, bảo mật, khả dụng, quan sát, tuân thủ); baseline truy vết REQ‑*</td>
+              <td>Review SRS; NFR có metric & cách đo</td>
+            </tr>
+            <tr>
+              <td><strong>M3 — Design Freeze</strong></td>
+              <td>ADR, data model, API contract; sơ đồ dataflow qua trust boundaries; threat model cập nhật</td>
+              <td><span class="badge">SDR</span> đạt checklist; action items xử lý xong</td>
+            </tr>
+            <tr>
+              <td><strong>M4 — Feature Complete</strong></td>
+              <td>Code & tests hoàn tất; báo cáo SAST/DAST sạch High/Critical; SBOM & chữ ký artefact</td>
+              <td><span class="badge">Bug Bar</span>: 0 Critical/High; Medium có mitigation & lịch</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout"><strong>Vận hành gates</strong>: checklist nhẹ; gom evidence tự động; RACI rõ ràng; hỗ trợ <em>Risk Accepted</em> có kiểm soát (owner, hạn, theo dõi).</div>
+      </article>
+    </section>
+
+    <div class="pagenum">12</div>
+  </main>
+</body>
+</html>

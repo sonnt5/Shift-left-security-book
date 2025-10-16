@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>19) Modeling — Kiến trúc & Dữ liệu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f8fafc; --panel:#ffffff; --ink:#0b1220; --muted:#475569; --stroke:#e2e8f0;
+      --brand:#0ea5e9; --accent:#818cf8; --ok:#22c55e; --warn:#f59e0b; --danger:#ef4444;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    .slide{max-width:1100px;margin:36px auto;padding:24px}
+    .brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+    .brand img{width:64px;height:64px;object-fit:contain}
+    h1{font-size:28px;line-height:1.15;margin:0}
+    h2{font-size:20px;margin:8px 0 6px}
+    h3{font-size:13px;margin:0 0 8px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+    p{margin:8px 0}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .span2{grid-column:1 / span 2}
+    .card{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:14px}
+    .eyebrow{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+    ul{margin:8px 0 0 18px;padding:0}
+    li{margin:6px 0}
+    .badge{display:inline-block;padding:2px 8px;border-radius:999px;background:#eef2ff;border:1px solid #c7d2fe;font-size:12px}
+    .callout{border-left:4px solid var(--brand);background:#eff6ff;padding:10px;border-radius:10px}
+    .pagenum{position:fixed;right:18px;bottom:14px;font-size:12px;color:var(--muted)}
+    .mini{font-size:12.5px;color:var(--muted)}
+    .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
+    .legend{display:flex;gap:10px;align-items:center}
+    .legend span{display:inline-block;width:10px;height:10px;border-radius:3px}
+    .l1{background:#93c5fd}.l2{background:#86efac}.l3{background:#fecaca}
+    .check li{list-style:"✔  "; padding-left:6px}
+  </style>
+</head>
+<body>
+  <main class="slide" role="document">
+    <header class="brand">
+      <img src="fpt_logo.png" alt="FPT University logo"/>
+      <h1>19) Modeling — Kiến trúc & Dữ liệu</h1>
+    </header>
+
+    <section class="grid">
+      <!-- Design Model overview -->
+      <article class="card">
+        <div class="eyebrow">Design Model</div>
+        <h2>Mô hình thiết kế theo Pressman</h2>
+        <p>Thiết kế được tổ chức thành các <em>yếu tố</em> chính để bảo đảm chất lượng và khả năng kiểm chứng:</p>
+        <ul>
+          <li><strong>Dữ liệu (Data design)</strong> — cấu trúc dữ liệu và cách tổ chức, xuất phát từ phân tích.</li>
+          <li><strong>Kiến trúc (Architectural)</strong> — cấu trúc tổng thể và mối quan hệ giữa các phần.</li>
+          <li><strong>Giao diện (Interface)</strong> — cách các phần tương tác (UI, API, external/internal interfaces).</li>
+          <li><strong>Thành phần (Component‑level)</strong> — chi tiết cài đặt ở mức mô‑đun/lớp.</li>
+          <li><strong>Triển khai (Deployment)</strong> — ánh xạ phần mềm lên môi trường chạy.</li>
+        </ul>
+        <p class="mini">Tham chiếu: Pressman, <span class="mono">Ch.12 §12.4</span> (các yếu tố của mô hình thiết kế).</p>
+      </article>
+
+      <!-- Architecture views -->
+      <article class="card">
+        <div class="eyebrow">Architecture Views</div>
+        <h2>Ba view cốt lõi: Context • Component • Deployment</h2>
+        <svg viewBox="0 0 520 180" role="img" aria-label="Context → Components → Deployment">
+          <defs>
+            <style>.bx{fill:#ffffff;stroke:#94a3b8} .em{fill:#eff6ff;stroke:#3b82f6} .hl{fill:#ecfdf5;stroke:#22c55e}</style>
+          </defs>
+          <rect x="24" y="24" width="120" height="34" rx="8" class="em"/>
+          <text x="84" y="45" text-anchor="middle" font-size="12">System Context</text>
+          <line x1="144" y1="41" x2="196" y2="41" stroke="#64748b"/>
+          <rect x="196" y="24" width="130" height="34" rx="8" class="bx"/>
+          <text x="261" y="45" text-anchor="middle" font-size="12">Archetypes/Subsystems</text>
+          <line x1="326" y1="41" x2="376" y2="41" stroke="#64748b"/>
+          <rect x="376" y="24" width="120" height="34" rx="8" class="bx"/>
+          <text x="436" y="45" text-anchor="middle" font-size="12">Components</text>
+
+          <rect x="196" y="100" width="170" height="34" rx="8" class="hl"/>
+          <text x="281" y="121" text-anchor="middle" font-size="12">Deployment / Instantiations</text>
+          <line x1="281" y1="58" x2="281" y2="100" stroke="#22c55e"/>
+
+          <text x="260" y="160" text-anchor="middle" font-size="11">Tiến trình: biểu diễn bối cảnh → đặc trưng hoá (archetypes) → tinh chỉnh thành components → mô tả cách triển khai.</text>
+        </svg>
+        <p class="mini">Tham chiếu: Pressman, <span class="mono">Ch.13 §13.6</span> (context, archetypes, refinement, instantiations).</p>
+      </article>
+
+      <!-- Data & Interfaces -->
+      <article class="card">
+        <div class="eyebrow">Data & Interfaces</div>
+        <h2>Thiết kế dữ liệu & chuẩn hoá hợp đồng giao tiếp</h2>
+        <ul>
+          <li><strong>Dữ liệu</strong>: xác định đối tượng dữ liệu, mối quan hệ và cấu trúc lưu trữ; đảm bảo phù hợp với yêu cầu và hỗ trợ chất lượng thiết kế.</li>
+          <li><strong>Giao diện/API</strong>: mô tả <em>inputs/outputs</em>, lỗi/ngoại lệ và các ràng buộc; áp dụng nguyên lý <em>information hiding</em> và <em>modularity</em> để giảm kết dính.</li>
+          <li><strong>Ràng buộc</strong>: ghi rõ giả định (assumptions) và hạn chế (constraints) chi phối quyết định kiến trúc và thành phần.</li>
+        </ul>
+        <p class="mini">Tham chiếu: Pressman, <span class="mono">Ch.12 §12.3–12.4</span> (nguyên lý thiết kế; phần tử dữ liệu, giao diện, thành phần).</p>
+      </article>
+
+      <!-- Assumptions & Constraints -->
+      <article class="card">
+        <div class="eyebrow">Assumptions & Constraints</div>
+        <h2>Đặt giả định và ràng buộc một cách tường minh</h2>
+        <ul>
+          <li>Liên kết giả định/ràng buộc với <strong>quyết định kiến trúc</strong> và <strong>yêu cầu chất lượng</strong>.</li>
+          <li>Ghi dấu vết (traceability) giữa yêu cầu ↔ thiết kế để kiểm chứng khi thay đổi.</li>
+          <li>Đưa các ràng buộc giao diện vào <strong>Interface Design</strong> để chuẩn hoá hợp đồng giao tiếp.</li>
+        </ul>
+        <p class="mini">Tham chiếu: Pressman, <span class="mono">Ch.12 §12.2–12.4</span>.</p>
+      </article>
+
+      <!-- Case tie-in -->
+      <article class="card span2">
+        <div class="eyebrow">Case Study tie‑in</div>
+        <h2>Dataflow PHI qua trust boundaries trong e‑Clinic</h2>
+        <div class="callout">
+          <p><strong>Bước 1 — Context</strong>: Vẽ sơ đồ bối cảnh để nhận diện <em>actors</em> bên ngoài (bệnh nhân, bảo hiểm, hệ thống phòng khám) và các luồng PHI.</p>
+          <p><strong>Bước 2 — Architecture</strong>: Xác định <em>archetypes/subsystems</em> quản lý hồ sơ, lịch hẹn, thanh toán; tinh chỉnh thành <em>components</em> có trách nhiệm rõ ràng.</p>
+          <p><strong>Bước 3 — Deployment</strong>: Mô tả cách các components được hiện thực hoá trên hạ tầng chạy; đối chiếu luồng PHI khi vượt qua ranh giới tin cậy.</p>
+          <p><strong>Bước 4 — Data & Interface</strong>: Liệt kê đối tượng dữ liệu PHI, hợp đồng giao tiếp và ràng buộc; ghi giả định/rủi ro để phục vụ kiểm tra bảo mật.</p>
+        </div>
+        <p class="mini">Tham chiếu: Pressman, <span class="mono">Ch.13 §13.6</span> (biểu diễn bối cảnh, tinh chỉnh kiến trúc, mô tả triển khai) & <span class="mono">Ch.27</span> (an ninh & quyền riêng tư).</p>
+      </article>
+
+      <!-- Checklist -->
+      <article class="card span2">
+        <div class="eyebrow">Checklist</div>
+        <h2>Checklist Modeling (áp dụng theo sách)</h2>
+        <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px">
+          <div class="card"><div class="eyebrow">Context</div><ul class="check"><li>Xác định actor & ranh giới hệ thống</li><li>Luồng dữ liệu chính</li><li>Giả định ban đầu</li></ul></div>
+          <div class="card"><div class="eyebrow">Architecture</div><ul class="check"><li>Archetypes/subsystems</li><li>Quan hệ & trách nhiệm</li><li>Thuộc tính chất lượng cấp kiến trúc</li></ul></div>
+          <div class="card"><div class="eyebrow">Data & Interfaces</div><ul class="check"><li>Đối tượng dữ liệu & quan hệ</li><li>Đặc tả interface/API</li><li>Ẩn thông tin & mô‑đun hoá</li></ul></div>
+          <div class="card"><div class="eyebrow">Deployment</div><ul class="check"><li>Ánh xạ component → môi trường chạy</li><li>Luồng giữa ranh giới tin cậy</li><li>Artefact kiểm chứng/đánh giá</li></ul></div>
+        </div>
+        <p class="mini">Tham chiếu: Pressman, <span class="mono">Ch.12 §12.3–12.4; Ch.13 §13.6; Ch.27</span>.</p>
+      </article>
+    </section>
+
+    <div class="pagenum">19</div>
+  </main>
+</body>
+</html>

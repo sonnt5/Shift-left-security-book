@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>18) Planning — Kế hoạch bảo mật</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f8fafc; --panel:#ffffff; --ink:#0b1220; --muted:#475569; --stroke:#e2e8f0;
+      --brand:#0ea5e9; --accent:#818cf8; --ok:#22c55e; --warn:#f59e0b; --danger:#ef4444;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    .slide{max-width:1100px;margin:36px auto;padding:24px}
+    .brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+    .brand img{width:64px;height:64px;object-fit:contain}
+    h1{font-size:28px;line-height:1.15;margin:0}
+    h2{font-size:20px;margin:8px 0 6px}
+    h3{font-size:13px;margin:0 0 8px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+    p{margin:8px 0}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .span2{grid-column:1 / span 2}
+    .card{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:14px}
+    .eyebrow{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+    ul{margin:8px 0 0 18px;padding:0}
+    li{margin:6px 0}
+    .badge{display:inline-block;padding:2px 8px;border-radius:999px;background:#eef2ff;border:1px solid #c7d2fe;font-size:12px}
+    .callout{border-left:4px solid var(--brand);background:#eff6ff;padding:10px;border-radius:10px}
+    .pagenum{position:fixed;right:18px;bottom:14px;font-size:12px;color:var(--muted)}
+    .mini{font-size:12.5px;color:var(--muted)}
+    .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace}
+    .legend{display:flex;gap:10px;align-items:center}
+    .legend span{display:inline-block;width:10px;height:10px;border-radius:3px}
+    .l1{background:#93c5fd}.l2{background:#86efac}.l3{background:#fecaca}
+    .check li{list-style:"✔  "; padding-left:6px}
+  </style>
+</head>
+<body>
+  <main class="slide" role="document">
+    <header class="brand">
+      <img src="fpt_logo.png" alt="FPT University logo"/>
+      <h1>18) Planning — Kế hoạch bảo mật</h1>
+    </header>
+
+    <section class="grid">
+      <!-- Objective -->
+      <article class="card">
+        <div class="eyebrow">Objective</div>
+        <h2>Security-by-Plan: gắn bảo mật với mốc, ngân sách, DoR/DoD</h2>
+        <ul>
+          <li>Đưa security vào **scope/WBS/ước lượng/lịch**; lặp theo <em>increment</em>.</li>
+          <li>Qua cổng bằng **evidence**: tài liệu, test reports, cấu hình.</li>
+          <li>Gates: <strong>SDR → Bug Bar → FSR</strong>.</li>
+        </ul>
+        <p class="mini">Tham chiếu: Pressman Ch.3 (planning principles); Kohnfelder Ch.7 (Security Design Reviews).</p>
+      </article>
+
+      <!-- Timeline diagram -->
+      <article class="card">
+        <div class="eyebrow">Timeline</div>
+        <h2>Lịch & Gates (SDR • Bug Bar • FSR)</h2>
+        <svg viewBox="0 0 520 160" role="img" aria-label="Timeline with security gates">
+          <!-- baseline -->
+          <line x1="20" y1="80" x2="500" y2="80" stroke="#94a3b8" stroke-width="2"/>
+          <!-- milestones -->
+          <circle cx="140" cy="80" r="6" fill="#93c5fd"/>
+          <text x="140" y="105" text-anchor="middle" font-size="11">M3: SDR</text>
+          <circle cx="300" cy="80" r="6" fill="#93c5fd"/>
+          <text x="300" y="105" text-anchor="middle" font-size="11">M4: Bug Bar</text>
+          <rect x="430" y="62" width="50" height="36" rx="6" fill="#dcfce7" stroke="#86efac"/>
+          <text x="455" y="84" text-anchor="middle" font-size="11">FSR</text>
+          <!-- annotations -->
+          <text x="60" y="40" font-size="11">Design Freeze</text>
+          <text x="240" y="40" font-size="11">Feature Complete</text>
+          <text x="450" y="40" font-size="11">Go‑Live</text>
+          <!-- connector arrows -->
+          <line x1="60" y1="44" x2="140" y2="74" stroke="#86efac"/>
+          <polygon points="140,74 134,68 146,68" fill="#86efac"/>
+          <line x1="240" y1="44" x2="300" y2="74" stroke="#86efac"/>
+          <polygon points="300,74 294,68 306,68" fill="#86efac"/>
+          <line x1="450" y1="44" x2="455" y2="62" stroke="#86efac"/>
+        </svg>
+        <p class="mini">Case tie‑in: đặt <strong>checkpoint bảo mật trước Sprint 3</strong> (tiền‑SDR) để chốt trust boundaries & dữ liệu nhạy cảm.</p>
+      </article>
+
+      <!-- Budget & staffing -->
+      <article class="card">
+        <div class="eyebrow">Budget & Staffing</div>
+        <h2>Ngân sách & nguồn lực test bảo mật</h2>
+        <ul>
+          <li><strong>WBS</strong>: Threat modeling, SDR packet, SAST/DAST/secret scan, SBOM, hardening, chaos/negative tests.</li>
+          <li><strong>Cost of quality (security)</strong>: buffer review → fix → re‑test; lịch scan định kỳ (CI/CD), IaC policy‑as‑code.</li>
+          <li><strong>Owner</strong>: SDR packet, threat model upkeep, triage tool findings, independent gate approver.</li>
+        </ul>
+      </article>
+
+      <!-- Secrets diagram -->
+      <article class="card">
+        <div class="eyebrow">Secrets</div>
+        <h2>Quản lý secrets (mức tối thiểu)</h2>
+        <svg viewBox="0 0 520 200" role="img" aria-label="Secrets management diagram">
+          <defs>
+            <style>.bx{fill:#ffffff;stroke:#94a3b8}.ok{fill:#ecfdf5;stroke:#22c55e}.bad{fill:#fff7ed;stroke:#f59e0b}</style>
+          </defs>
+          <rect x="20" y="24" width="120" height="28" rx="8" class="bx"/>
+          <text x="80" y="43" text-anchor="middle" font-size="11">Source Repo</text>
+          <rect x="170" y="24" width="120" height="28" rx="8" class="bx"/>
+          <text x="230" y="43" text-anchor="middle" font-size="11">CI Pipeline</text>
+          <rect x="320" y="24" width="160" height="28" rx="8" class="ok"/>
+          <text x="400" y="43" text-anchor="middle" font-size="11">Secret Scanning ✓</text>
+          <line x1="140" y1="38" x2="170" y2="38" stroke="#64748b"/>
+          <line x1="290" y1="38" x2="320" y2="38" stroke="#64748b"/>
+
+          <rect x="60" y="120" width="160" height="28" rx="8" class="bx"/>
+          <text x="140" y="139" text-anchor="middle" font-size="11">Application Service</text>
+          <rect x="260" y="120" width="100" height="28" rx="8" class="ok"/>
+          <text x="310" y="139" text-anchor="middle" font-size="11">Vault/KMS</text>
+          <rect x="380" y="120" width="90" height="28" rx="8" class="bx"/>
+          <text x="425" y="139" text-anchor="middle" font-size="11">Audit</text>
+          <line x1="220" y1="134" x2="260" y2="134" stroke="#22c55e"/>
+          <line x1="360" y1="134" x2="380" y2="134" stroke="#64748b"/>
+
+          <text x="260" y="175" text-anchor="middle" font-size="11">Policy: no hard‑coded secrets • rotate • least privilege • env isolation</text>
+        </svg>
+        <ul class="mini check">
+          <li>Không lưu secrets trong code; bật secret scanning trong CI.</li>
+          <li>Vault/KMS + rotation theo kỳ; audit access; deny‑by‑default.</li>
+          <li>SLI: thời gian xử lý rò rỉ; số secrets hard‑coded = 0.</li>
+        </ul>
+      </article>
+
+      <!-- DoR/DoD -->
+      <article class="card">
+        <div class="eyebrow">DoR / DoD</div>
+        <h2>Security in Definition of Ready/Done</h2>
+        <h3>Definition of Ready</h3>
+        <ul class="check">
+          <li>Use case & <strong>data classification</strong> (PII/PHI?).</li>
+          <li>Acceptance criteria bao phủ <em>abuse/misuse cases</em>.</li>
+          <li>Luồng/dữ liệu mới → cập nhật <strong>threat model</strong> sơ bộ & kế hoạch test.</li>
+        </ul>
+        <h3>Definition of Done</h3>
+        <ul class="check">
+          <li>AuthZ theo vai trò; log có cấu trúc, không lộ PII.</li>
+          <li>SAST/DAST/secret scan: **Critical/High = 0**; dependency có **SBOM** & policy pass.</li>
+          <li>Evidence cập nhật vào <strong>Evidence Store</strong> + liên kết tracker.</li>
+        </ul>
+      </article>
+
+      <!-- SDR process -->
+      <article class="card">
+        <div class="eyebrow">SDR Process</div>
+        <h2>Quy trình SDR (rút gọn theo sách)</h2>
+        <svg viewBox="0 0 520 190" role="img" aria-label="SDR 6-step process">
+          <defs><style>.bx{fill:#ffffff;stroke:#94a3b8}</style></defs>
+          <rect x="20" y="20" width="80" height="28" rx="8" class="bx"/>
+          <text x="60" y="38" text-anchor="middle" font-size="11">Study</text>
+          <line x1="100" y1="34" x2="120" y2="34" stroke="#64748b"/>
+          <rect x="120" y="20" width="80" height="28" rx="8" class="bx"/>
+          <text x="160" y="38" text-anchor="middle" font-size="11">Inquire</text>
+          <line x1="200" y1="34" x2="220" y2="34" stroke="#64748b"/>
+          <rect x="220" y="20" width="80" height="28" rx="8" class="bx"/>
+          <text x="260" y="38" text-anchor="middle" font-size="11">Focus</text>
+          <line x1="300" y1="34" x2="320" y2="34" stroke="#64748b"/>
+          <rect x="320" y="20" width="90" height="28" rx="8" class="bx"/>
+          <text x="365" y="38" text-anchor="middle" font-size="11">Collaborate</text>
+          <line x1="410" y1="34" x2="430" y2="34" stroke="#64748b"/>
+          <rect x="430" y="20" width="70" height="28" rx="8" class="bx"/>
+          <text x="465" y="38" text-anchor="middle" font-size="11">Report</text>
+          <line x1="465" y1="48" x2="465" y2="100" stroke="#64748b"/>
+          <rect x="395" y="100" width="140" height="28" rx="8" class="bx"/>
+          <text x="465" y="118" text-anchor="middle" font-size="11">Follow‑up → FSR</text>
+        </svg>
+        <p class="mini">Tài liệu phải cụ thể (không ghi kiểu “store data securely”); reviewer độc lập giúp tăng khách quan.</p>
+      </article>
+
+      <!-- Bug Bar checklist -->
+      <article class="card span2">
+        <div class="eyebrow">Gate Policy</div>
+        <h2>Checklist “Bug Bar (draft)” @ M4</h2>
+        <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px">
+          <div class="card"><div class="eyebrow">Open bugs</div><ul class="check"><li>Critical/High = 0</li><li>Medium có mitigation</li><li>Low có kế hoạch</li></ul></div>
+          <div class="card"><div class="eyebrow">Scans</div><ul class="check"><li>SAST/DAST/Secret: 0 C/H</li><li>Container/IaC policy pass</li></ul></div>
+          <div class="card"><div class="eyebrow">Tests</div><ul class="check"><li>Negative/abuse cases</li><li>AuthZ matrix</li><li>Fuzz/Canary endpoints</li></ul></div>
+          <div class="card"><div class="eyebrow">Docs & Evidence</div><ul class="check"><li>Threat model cập nhật</li><li>SDR items đóng or accepted</li><li>SBOM + signatures</li></ul></div>
+        </div>
+      </article>
+    </section>
+
+    <div class="pagenum">18</div>
+  </main>
+</body>
+</html>

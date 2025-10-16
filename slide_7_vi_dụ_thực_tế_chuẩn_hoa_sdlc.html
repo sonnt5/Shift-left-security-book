@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slide 7 — Ví dụ thực tế & Chuẩn hoá SDLC</title>
+  <style>
+    :root{
+      --bg:#f8fafc;--fg:#0b1220;--muted:#64748b;--accent:#38bdf8;--accent2:#a78bfa;--ok:#10b981;--stroke:#cbd5e1;--card:#ffffff;
+    }
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.55}
+    .slide{max-width:1100px;margin:40px auto;padding:36px 40px 56px;background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:20px;box-shadow:0 6px 24px rgba(0,0,0,.08);position:relative}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .brand img{height:64px}
+    .brand h1{margin:0;font-size:28px;line-height:1.2;font-weight:800}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:14px;background:var(--card)}
+    .eyebrow{font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+    h2{margin:8px 0 6px;font-size:18px}
+    h3{margin:8px 0 6px;font-size:15px}
+    ul{margin:0 0 6px 1.0rem;padding:0}
+    li{margin:6px 0}
+    .svg-card{background:#fff;border:1px solid var(--stroke);border-radius:14px;padding:12px}
+    .svg-card h3{margin:0 0 6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+    .svg-card svg{max-width:100%;height:200px;display:block}
+    .span2{grid-column:1 / -1}
+    .caption{font-size:12px;color:var(--muted)}
+    .callout{margin-top:8px;border-left:4px solid var(--accent);background:rgba(56,189,248,.12);padding:10px 12px;border-radius:8px}
+    .pagenum{position:absolute;bottom:12px;right:16px;font-size:14px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <main class="slide" role="document">
+    <header class="brand"><img src="fpt_logo.png" alt="FPT University logo"><h1>Ví dụ thực tế & Chuẩn hoá trong SDLC</h1></header>
+
+    <section class="grid">
+      <!-- 4) Ví dụ ngắn (liên hệ thực tế) -->
+      <article class="card span2">
+        <div class="eyebrow">4) Ví dụ ngắn (liên hệ thực tế)</div>
+        <h2>Communication: đối chiếu dự án nhỏ vs. dự án lớn</h2>
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
+          <div class="card" style="padding:10px">
+            <h3>Dự án nhỏ</h3>
+            <ul>
+              <li><strong>Hoạt động</strong>: 1–2 trao đổi (gọi điện/meeting ngắn) để chốt phạm vi.</li>
+              <li><strong>Task set</strong>: gọi điện → ghi chú → gửi xác nhận qua email/chat.</li>
+              <li><strong>Milestone</strong>: “<em>Requirement Statement approved</em>”.</li>
+              <li><strong>Artefacts</strong>: note xác nhận, danh sách yêu cầu gọn.</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:10px">
+            <h3>Dự án lớn</h3>
+            <ul>
+              <li><strong>Vấn đề</strong>: nhiều stakeholder, yêu cầu xung đột.</li>
+              <li><strong>Actions</strong>: inception → elicitation → elaboration → negotiation → specification → validation.</li>
+              <li><strong>Mỗi action</strong> có <em>task set</em> riêng (workshop, phỏng vấn, user scenario, ưu tiên…)</li>
+              <li><strong>QA</strong>: review/validation theo từng artefact; <strong>Milestone</strong>: <em>Requirements Baseline</em>.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="svg-card" style="margin-top:10px">
+          <h3>Sơ đồ — Chọn process flow theo bối cảnh</h3>
+          <svg viewBox="0 0 820 230" role="img" aria-label="Decision mini for choosing flow">
+            <!-- decision diamond -->
+            <polygon points="380,20 440,60 380,100 320,60" fill="#fff" stroke="#94a3b8" />
+            <text x="380" y="64" text-anchor="middle" font-size="12">Bối cảnh</text>
+            
+            <!-- left branch: deadline gấp, cần giá trị sớm -->
+            <line x1="320" y1="60" x2="220" y2="60" stroke="#94a3b8" />
+            <polygon points="220,60 228,56 228,64" fill="#94a3b8"/>
+            <rect x="80" y="40" width="120" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+            <text x="140" y="58" text-anchor="middle" font-size="11">Deadline gấp</text>
+            <text x="140" y="73" text-anchor="middle" font-size="11">cần value sớm</text>
+            <line x1="140" y1="80" x2="140" y2="118" stroke="#94a3b8"/>
+            <rect x="80" y="118" width="120" height="28" rx="8" fill="#ecfdf5" stroke="#22c55e"/>
+            <text x="140" y="136" text-anchor="middle" font-size="11">Iterative/Evolutionary</text>
+
+            <!-- right branch: nhiều team song song -->
+            <line x1="440" y1="60" x2="540" y2="60" stroke="#94a3b8" />
+            <polygon points="540,60 532,56 532,64" fill="#94a3b8"/>
+            <rect x="560" y="40" width="160" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+            <text x="640" y="58" text-anchor="middle" font-size="11">Nhiều nhóm có thể
+              chạy song song</text>
+            <line x1="640" y1="80" x2="640" y2="118" stroke="#94a3b8"/>
+            <rect x="580" y="118" width="120" height="28" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+            <text x="640" y="136" text-anchor="middle" font-size="11">Parallel (phần phù hợp)</text>
+
+            <!-- bottom branch: yêu cầu ổn định/tuân thủ nặng -> Linear -->
+            <line x1="380" y1="100" x2="380" y2="120" stroke="#94a3b8" />
+            <rect x="300" y="120" width="160" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+            <text x="380" y="138" text-anchor="middle" font-size="11">Yêu cầu ổn định, tuân thủ nặng</text>
+            <line x1="380" y1="160" x2="380" y2="178" stroke="#94a3b8"/>
+            <rect x="320" y="178" width="120" height="28" rx="8" fill="#fff7ed" stroke="#fb923c"/>
+            <text x="380" y="196" text-anchor="middle" font-size="11">Linear / V‑Model</text>
+
+            <!-- bottom note -->
+            <text x="410" y="214" text-anchor="middle" font-size="11" fill="#64748b">Chọn linh hoạt; có thể kết hợp nhiều flow theo từng phân đoạn.</text>
+          </svg>
+        </div>
+      </article>
+
+      <!-- 5) Chuẩn hoá để tăng lặp lại & kiểm chứng chất lượng -->
+      <article class="card">
+        <div class="eyebrow">5) Chuẩn hoá để tăng lặp lại & kiểm chứng chất lượng</div>
+        <h2>Vì sao chuẩn hoá?</h2>
+        <ul>
+          <li><strong>Đường băng lặp lại</strong>: định nghĩa <em>task set mẫu</em> cho từng loại dự án/hành động ("Elicitation – nhỏ", "Elicitation – lớn").</li>
+          <li><strong>Dễ onboard</strong>: người mới làm theo checklist; giảm rủi ro bỏ sót bước.</li>
+          <li><strong>Linh hoạt</strong>: task set là <em>template có cấu hình</em> → điều chỉnh theo quy mô/rủi ro.</li>
+        </ul>
+        <h3>Chuẩn hoá giúp kiểm chứng</h3>
+        <ul>
+          <li>Mỗi <strong>work product</strong> gắn <strong>QA points</strong> & <strong>milestones</strong> rõ ràng → chất lượng đo được.</li>
+          <li>Ví dụ: <em>Requirement</em> chỉ "Done" khi qua peer review + đủ traceability; <em>Design</em> "Done" khi qua design review và xử lý action items.</li>
+        </ul>
+        <div class="callout"><strong>Liên hệ lớp bảo mật (overlay)</strong>: chèn sẵn các kiểm soát bảo mật vào template — threat modeling (Modeling), Bug Bar & tiêu chí test bảo mật (Construction), FSR (Deployment) — tạo <em>evidence</em> xuyên suốt vòng đời.</div>
+      </article>
+
+      <!-- 6) Kết luận thực hành -->
+      <article class="card">
+        <div class="eyebrow">6) Kết luận thực hành</div>
+        <h2>Dùng SDLC như một hệ khung tạo chất lượng</h2>
+        <ul>
+          <li><strong>Chọn process flow phù hợp</strong> (linear/iterative/evolutionary/parallel) theo bối cảnh, không cứng nhắc một kiểu.</li>
+          <li><strong>Định nghĩa & chuẩn hoá task set</strong> theo loại dự án; mô tả rõ <em>work products</em>, <em>QA points</em>, <em>milestones</em>; điều chỉnh theo quy mô–rủi ro.</li>
+          <li><strong>Gắn bảo mật & bằng chứng</strong> vào artefacts/mốc phù hợp để đảm bảo có thể kiểm chứng ở mọi giai đoạn (ăn khớp SSDLC overlay).</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="pagenum">7</div>
+  </main>
+</body>
+</html>

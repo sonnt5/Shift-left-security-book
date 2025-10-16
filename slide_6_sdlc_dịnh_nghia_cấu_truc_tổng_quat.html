@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slide 6 — SDLC: Định nghĩa & Cấu trúc tổng quát</title>
+  <style>
+    :root{
+      --bg:#f8fafc;  /* light */
+      --fg:#0b1220;  /* text */
+      --muted:#64748b; /* slate-500 */
+      --accent:#38bdf8; /* sky-400 */
+      --accent2:#a78bfa; /* violet-400 */
+      --ok:#10b981; --danger:#ef4444; --stroke:#cbd5e1; --card:#ffffff;
+    }
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.55}
+    .slide{max-width:1100px;margin:40px auto;padding:36px 40px 56px;background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:20px;box-shadow:0 6px 24px rgba(0,0,0,.08);position:relative}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .brand img{height:64px}
+    .brand h1{margin:0;font-size:28px;line-height:1.2;font-weight:800}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:14px;background:var(--card)}
+    .eyebrow{font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+    h2{margin:8px 0 6px;font-size:18px}
+    ul{margin:0 0 6px 1.0rem;padding:0}
+    li{margin:6px 0}
+    .svg-card{background:#fff;border:1px solid var(--stroke);border-radius:14px;padding:12px}
+    .svg-card h3{margin:0 0 6px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+    .svg-card svg{max-width:100%;height:180px;display:block}
+    .span2{grid-column:1 / -1}
+    .caption{font-size:12px;color:var(--muted)}
+    .callout{margin-top:8px;border-left:4px solid var(--accent);background:rgba(56,189,248,.12);padding:10px 12px;border-radius:8px}
+    .pagenum{position:absolute;bottom:12px;right:16px;font-size:14px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <main class="slide" role="document">
+    <header class="brand"><img src="fpt_logo.png" alt="FPT University logo"><h1>SDLC — Định nghĩa & Cấu trúc tổng quát</h1></header>
+
+    <section class="grid">
+      <!-- 1) SDLC là gì? -->
+      <div class="card">
+        <div class="eyebrow">1. SDLC là gì?</div>
+        <h2>Khung tổ chức để biến yêu cầu thành phần mềm vận hành</h2>
+        <ul>
+          <li><strong>SDLC</strong> là cấu trúc điều phối công việc xuyên suốt vòng đời: từ <em>yêu cầu</em> → <em>thiết kế</em> → <em>xây dựng</em> → <em>kiểm thử</em> → <em>triển khai/vận hành</em>.</li>
+          <li>Khung gồm các <strong>framework activities</strong> (Communication, Planning, Modeling, Construction, Deployment).</li>
+          <li>Mỗi activity chứa nhiều <strong>task set</strong>; mỗi task set sinh <strong>work products</strong>, đi kèm <strong>QA points</strong> và <strong>milestones</strong>.</li>
+        </ul>
+        <div class="callout"><strong>Tóm ý:</strong> SDLC cung cấp <em>ngôn ngữ chung</em> cho công việc, <em>artefacts</em> để kiểm chứng chất lượng, và <em>mốc</em> để điều hành dự án.</div>
+      </div>
+
+      <!-- 2) Activities vs Flows -->
+      <div class="card">
+        <div class="eyebrow">2. Framework activities vs. Process flows</div>
+        <h2>"Làm <em>gì</em>" khác với "đi <em>như thế nào</em>"</h2>
+        <ul>
+          <li><strong>Framework activities</strong> = các nhóm việc cấp cao, luôn hiện diện (5 hoạt động khung).</li>
+          <li><strong>Process flows</strong> = cách <em>sắp xếp nhịp điệu</em> qua activities: <em>Linear</em> (tuần tự), <em>Iterative</em> (lặp), <em>Evolutionary</em> (tiến hoá), <em>Parallel</em> (song hành).</li>
+          <li>Ví dụ: dự án rủi ro cao chọn <em>iterative</em> để học nhanh; môi trường tuân thủ nặng ưu tiên <em>linear/V‑model</em> để dễ audit.</li>
+        </ul>
+      </div>
+
+      <!-- Diagram: Framework & flows -->
+      <div class="svg-card">
+        <h3 class="eyebrow">Sơ đồ — Khung SDLC & các kiểu Flow (theo Pressman & Maxim)</h3>
+        <svg viewBox="0 0 880 420" role="img" aria-label="SDLC framework with canonical Pressman models">
+          <!-- Framework activities strip -->
+          <g aria-label="framework-activities">
+            <rect x="60" y="20" width="120" height="28" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="120" y="38" text-anchor="middle" font-size="11">Communication</text>
+            <rect x="200" y="20" width="120" height="28" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="260" y="38" text-anchor="middle" font-size="11">Planning</text>
+            <rect x="340" y="20" width="120" height="28" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="400" y="38" text-anchor="middle" font-size="11">Modeling</text>
+            <rect x="480" y="20" width="120" height="28" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="540" y="38" text-anchor="middle" font-size="11">Construction</text>
+            <rect x="620" y="20" width="120" height="28" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="680" y="38" text-anchor="middle" font-size="11">Deployment</text>
+          </g>
+
+          <!-- Panel 1: Linear (Waterfall) -->
+          <g transform="translate(30,70)">
+            <rect x="0" y="0" width="400" height="130" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="12" y="18" font-size="12" fill="#475569">Linear (Waterfall)</text>
+            <!-- stepped boxes -->
+            <rect x="20" y="30" width="110" height="24" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+            <text x="75" y="46" text-anchor="middle" font-size="10">Requirements</text>
+            <line x1="130" y1="42" x2="150" y2="62" stroke="#94a3b8"/>
+
+            <rect x="150" y="62" width="110" height="24" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+            <text x="205" y="78" text-anchor="middle" font-size="10">Design</text>
+            <line x1="260" y1="74" x2="280" y2="94" stroke="#94a3b8"/>
+
+            <rect x="280" y="94" width="110" height="24" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+            <text x="335" y="110" text-anchor="middle" font-size="10">Implementation</text>
+            <rect x="320" y="30" width="60" height="20" rx="6" fill="#ecfdf5" stroke="#22c55e"/>
+            <text x="350" y="44" text-anchor="middle" font-size="9" fill="#166534">Release</text>
+          </g>
+
+          <!-- Panel 2: Incremental (Evolutionary/Increments) -->
+          <g transform="translate(450,70)">
+            <rect x="0" y="0" width="400" height="130" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="12" y="18" font-size="12" fill="#475569">Incremental (Evolutionary)</text>
+            <!-- three mini waterfalls side-by-side -->
+            <g transform="translate(16,30)">
+              <rect x="0" y="0" width="90" height="18" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+              <text x="45" y="13" text-anchor="middle" font-size="9">Req</text>
+              <line x1="90" y1="9" x2="104" y2="24" stroke="#94a3b8"/>
+              <rect x="104" y="24" width="90" height="18" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+              <text x="149" y="37" text-anchor="middle" font-size="9">Design</text>
+              <line x1="194" y1="33" x2="208" y2="48" stroke="#94a3b8"/>
+              <rect x="208" y="48" width="90" height="18" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+              <text x="253" y="61" text-anchor="middle" font-size="9">Build/Test</text>
+              <rect x="238" y="0" width="60" height="18" rx="4" fill="#ecfdf5" stroke="#22c55e"/>
+              <text x="268" y="13" text-anchor="middle" font-size="9" fill="#166534">Rel 1</text>
+            </g>
+            <g transform="translate(16,78)">
+              <rect x="140" y="0" width="90" height="18" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+              <text x="185" y="13" text-anchor="middle" font-size="9">Req+</text>
+              <line x1="230" y1="9" x2="244" y2="24" stroke="#94a3b8"/>
+              <rect x="244" y="24" width="90" height="18" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+              <text x="289" y="37" text-anchor="middle" font-size="9">Design</text>
+              <line x1="334" y1="33" x2="348" y2="48" stroke="#94a3b8"/>
+              <rect x="348" y="48" width="90" height="18" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+              <text x="393" y="61" text-anchor="middle" font-size="9">Build/Test</text>
+              <rect x="378" y="0" width="60" height="18" rx="4" fill="#ecfdf5" stroke="#22c55e"/>
+              <text x="408" y="13" text-anchor="middle" font-size="9" fill="#166534">Rel 2</text>
+            </g>
+          </g>
+
+          <!-- Panel 3: Spiral (Evolutionary) -->
+          <g transform="translate(30,220)">
+            <rect x="0" y="0" width="400" height="180" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="12" y="18" font-size="12" fill="#475569">Spiral Model</text>
+            <!-- axes -->
+            <line x1="200" y1="30" x2="200" y2="160" stroke="#e2e8f0"/>
+            <line x1="20" y1="90" x2="380" y2="90" stroke="#e2e8f0"/>
+            <!-- spiral path (approx) -->
+            <path d="M 200 90 m -10 0 a 10 10 0 1 0 20 0 a 10 10 0 1 0 -20 0
+                     M 200 90 m -30 0 a 30 30 0 1 0 60 0 a 30 30 0 1 0 -60 0
+                     M 200 90 m -60 0 a 60 60 0 1 0 120 0 a 60 60 0 1 0 -120 0
+                     M 200 90 m -90 0 a 90 90 0 1 0 180 0 a 90 90 0 1 0 -180 0" 
+                  stroke="#0ea5e9" fill="none"/>
+            <!-- quadrant labels -->
+            <text x="205" y="38" font-size="10" fill="#0ea5e9">Planning</text>
+            <text x="320" y="95" font-size="10" fill="#0ea5e9">Risk Analysis</text>
+            <text x="195" y="160" font-size="10" fill="#0ea5e9">Dev & Validation</text>
+            <text x="40" y="95" font-size="10" fill="#0ea5e9">Objectives</text>
+          </g>
+
+          <!-- Panel 4: Concurrent (state model per activity) -->
+          <g transform="translate(450,220)">
+            <rect x="0" y="0" width="400" height="180" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="12" y="18" font-size="12" fill="#475569">Concurrent (State Model)</text>
+            <!-- columns for activities -->
+            <text x="60" y="38" font-size="10" fill="#475569">Comm</text>
+            <text x="140" y="38" font-size="10" fill="#475569">Plan</text>
+            <text x="220" y="38" font-size="10" fill="#475569">Model</text>
+            <text x="300" y="38" font-size="10" fill="#475569">Construct</text>
+            <text x="380" y="38" font-size="10" fill="#475569">Deploy</text>
+            <!-- state lanes (one detailed example for Modeling) -->
+            <g>
+              <rect x="190" y="56" width="60" height="18" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+              <text x="220" y="69" text-anchor="middle" font-size="9">Underway</text>
+              <rect x="190" y="86" width="60" height="18" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+              <text x="220" y="99" text-anchor="middle" font-size="9">Under review</text>
+              <rect x="190" y="116" width="60" height="18" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+              <text x="220" y="129" text-anchor="middle" font-size="9">Awaiting chg</text>
+              <rect x="190" y="146" width="60" height="18" rx="6" fill="#ecfdf5" stroke="#22c55e"/>
+              <text x="220" y="159" text-anchor="middle" font-size="9">Baselined</text>
+              <!-- arrows -->
+              <line x1="220" y1="74" x2="220" y2="86" stroke="#94a3b8"/>
+              <polygon points="220,86 216,80 224,80" fill="#94a3b8"/>
+              <line x1="220" y1="104" x2="220" y2="116" stroke="#94a3b8"/>
+              <polygon points="220,116 216,110 224,110" fill="#94a3b8"/>
+              <line x1="220" y1="134" x2="220" y2="146" stroke="#94a3b8"/>
+              <polygon points="220,146 216,140 224,140" fill="#94a3b8"/>
+            </g>
+            <!-- other columns minimal markers -->
+            <circle cx="60" cy="66" r="4" fill="#22c55e"/>
+            <circle cx="140" cy="66" r="4" fill="#f59e0b"/>
+            <circle cx="300" cy="66" r="4" fill="#0ea5e9"/>
+            <circle cx="380" cy="66" r="4" fill="#ef4444"/>
+            <text x="200" y="20" font-size="9" fill="#64748b"></text>
+            <text x="20" y="170" font-size="10" fill="#64748b">Trạng thái theo activity diễn tiến song song, cập nhật khi có tiến triển.</text>
+          </g>
+        </svg>
+        <div class="caption">Mỗi mô hình diễn giải một <em>flow</em> theo giáo trình: Waterfall (bậc thang), Incremental (nhiều đợt phát hành), Spiral (vòng xoáy/đánh giá rủi ro), Concurrent (mỗi activity có trạng thái). </div>
+      </div>
+      </div>
+
+      <!-- Diagram: Task set → Work products → QA → Milestones -->
+      <div class="svg-card">
+        <h3 class="eyebrow">Sơ đồ — Chuỗi kiểm soát: Task set → Work products → QA → Milestones</h3>
+        <svg viewBox="0 0 760 200" role="img" aria-label="Task set to work products to QA to milestones">
+          <rect x="40" y="28" width="160" height="34" rx="8" fill="#ffffff" stroke="#60a5fa"/>
+          <text x="120" y="50" text-anchor="middle" font-size="12">Task set</text>
+
+          <rect x="240" y="28" width="180" height="34" rx="8" fill="#ffffff" stroke="#60a5fa"/>
+          <text x="330" y="50" text-anchor="middle" font-size="12">Work products</text>
+
+          <rect x="460" y="28" width="120" height="34" rx="8" fill="#ffffff" stroke="#60a5fa"/>
+          <text x="520" y="50" text-anchor="middle" font-size="12">QA points</text>
+
+          <rect x="620" y="28" width="100" height="34" rx="8" fill="#ffffff" stroke="#60a5fa"/>
+          <text x="670" y="50" text-anchor="middle" font-size="12">Milestones</text>
+
+          <line x1="200" y1="45" x2="240" y2="45" stroke="#818cf8" stroke-width="2"/>
+          <polygon points="240,45 232,40 232,50" fill="#818cf8"/>
+          <line x1="420" y1="45" x2="460" y2="45" stroke="#818cf8" stroke-width="2"/>
+          <polygon points="460,45 452,40 452,50" fill="#818cf8"/>
+          <line x1="580" y1="45" x2="620" y2="45" stroke="#818cf8" stroke-width="2"/>
+          <polygon points="620,45 612,40 612,50" fill="#818cf8"/>
+
+          <!-- examples under each box -->
+          <text x="120" y="86" text-anchor="middle" font-size="11" fill="#475569">Elicitation checklist • WBS</text>
+          <text x="330" y="86" text-anchor="middle" font-size="11" fill="#475569">SRS • Models • Code • Tests</text>
+          <text x="520" y="86" text-anchor="middle" font-size="11" fill="#475569">Peer review • SDR • Test gates</text>
+          <text x="670" y="86" text-anchor="middle" font-size="11" fill="#475569">Req baseline • Design freeze</text>
+
+          <!-- evidence line below -->
+          <rect x="60" y="130" width="640" height="26" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+          <text x="380" y="148" text-anchor="middle" font-size="11" fill="#334155">Evidence store: artefacts • review notes • results • logs</text>
+          <line x1="120" y1="62" x2="120" y2="130" stroke="#94a3b8" stroke-dasharray="4 3"/>
+          <line x1="330" y1="62" x2="330" y2="130" stroke="#94a3b8" stroke-dasharray="4 3"/>
+          <line x1="520" y1="62" x2="520" y2="130" stroke="#94a3b8" stroke-dasharray="4 3"/>
+          <line x1="670" y1="62" x2="670" y2="130" stroke="#94a3b8" stroke-dasharray="4 3"/>
+        </svg>
+        <div class="caption">Chuỗi biến công việc trừu tượng thành artefacts cụ thể, có điểm soát chất lượng và mốc đo lường — tạo khả năng kiểm chứng.</div>
+      </div>
+
+      <div class="card span2">
+        <div class="eyebrow">Ghi nhớ nhanh</div>
+        <p><strong>Activities</strong> = làm <em>gì</em>. <strong>Flows</strong> = đi <em>như thế nào</em>. <strong>Chuỗi Task→Artefact→QA→Milestone</strong> = cột sống quản trị chất lượng.</p>
+      </div>
+    </section>
+
+    <div class="pagenum">6</div>
+  </main>
+</body>
+</html>

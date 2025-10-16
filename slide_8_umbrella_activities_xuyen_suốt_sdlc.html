@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slide 8 — Umbrella activities xuyên suốt SDLC</title>
+  <style>
+    :root{
+      --bg:#f8fafc;--fg:#0b1220;--muted:#64748b;--accent:#38bdf8;--accent2:#a78bfa;--ok:#10b981;--danger:#ef4444;--stroke:#cbd5e1;--card:#ffffff;
+    }
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.55}
+    .slide{max-width:1100px;margin:40px auto;padding:24px 28px 52px;background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:18px;box-shadow:0 6px 24px rgba(0,0,0,.08);position:relative}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+    .brand img{height:56px}
+    .brand h1{margin:0;font-size:24px;line-height:1.2;font-weight:800}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:10px;background:var(--card)}
+    .eyebrow{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+    h2{margin:6px 0 4px;font-size:16px}
+    ul{margin:0 0 4px 1.0rem;padding:0}
+    li{margin:4px 0;font-size:13px}
+    p{margin:6px 0;font-size:13px}
+    .svg-card{background:#fff;border:1px solid var(--stroke);border-radius:14px;padding:10px}
+    .svg-card h3{margin:0 0 6px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+    .svg-card svg{max-width:100%;height:160px;display:block}
+    .span2{grid-column:1 / -1}
+    .caption{font-size:11px;color:var(--muted)}
+    .pagenum{position:absolute;bottom:10px;right:14px;font-size:12px;color:var(--muted)}
+    .callout{margin-top:6px;border-left:4px solid var(--accent);background:rgba(56,189,248,.12);padding:8px 10px;border-radius:8px;font-size:13px}
+    table{width:100%;border-collapse:separate;border-spacing:0 6px}
+    th,td{font-size:12px;padding:6px 8px;background:#ffffff;border:1px solid var(--stroke)}
+    th{background:#f8fafc;color:#334155;text-align:left}
+    .badge{display:inline-block;padding:2px 6px;border-radius:999px;background:#ecfeff;border:1px solid #06b6d4;font-size:11px}
+  </style>
+</head>
+<body>
+  <main class="slide" role="document">
+    <header class="brand"><img src="fpt_logo.png" alt="FPT University logo"><h1>Umbrella activities xuyên suốt SDLC</h1></header>
+
+    <section class="grid">
+      <!-- Khái niệm -->
+      <article class="card span2">
+        <div class="eyebrow">Khái niệm</div>
+        <h2>Những hoạt động “ô dù” chạy xuyên suốt</h2>
+        <p><strong>Umbrella activities</strong> là các hoạt động lặp lại ở mọi giai đoạn nhằm <em>giữ nhịp kiểm soát</em> cho dự án: theo dõi & điều hành, quản trị rủi ro, đảm bảo chất lượng (SQA), quản lý cấu hình (SCM), và rà soát kỹ thuật (FTR/peer review). Chất lượng đến từ <em>quy trình có bằng chứng</em> ở từng bước—không chỉ từ kết quả cuối.</p>
+      </article>
+
+      <!-- Tracking & control -->
+      <article class="card">
+        <div class="eyebrow">Project tracking & control</div>
+        <h2>Theo dõi & điều hành</h2>
+        <ul>
+          <li>Thiết lập <strong>baseline</strong> (phạm vi, lịch, chi phí, chất lượng) và đo lường so với thực tế.</li>
+          <li>Tối thiểu: <em>lịch increment</em>, burn-up/down hoặc EV, danh mục impediments có <em>owner</em> & deadline.</li>
+          <li>Ví dụ: thiếu threat model trước <em>Design Freeze</em> ⇒ tạo action, dời mốc cho đến khi đủ <span class="badge">SDR-ready</span>.</li>
+        </ul>
+      </article>
+
+      <!-- Risk management -->
+      <article class="card">
+        <div class="eyebrow">Risk management</div>
+        <h2>Quản lý rủi ro chủ động</h2>
+        <ul>
+          <li>Nhận diện sớm, đánh giá <em>xác suất × tác động</em>, lập phương án: tránh/giảm nhẹ/chuyển giao/chấp nhận.</li>
+          <li>Rà soát theo nhịp (mỗi iteration); liên kết với mốc phát hành.</li>
+          <li>Ví dụ: <em>mTLS</em> cho webhook BHYT; có <em>trigger</em> giám sát thất bại để kích hoạt phương án.</li>
+        </ul>
+      </article>
+
+      <!-- SQA -->
+      <article class="card">
+        <div class="eyebrow">Software Quality Assurance (SQA)</div>
+        <h2>Đảm bảo chất lượng hệ thống</h2>
+        <ul>
+          <li>Không chỉ là kiểm thử, mà là <strong>chính sách + chuẩn + thủ tục + QA points</strong> chèn vào mọi activity.</li>
+          <li>Definition of Done theo artefact; kế hoạch test đa lớp; bằng chứng lưu tại <em>Evidence Store</em>.</li>
+          <li>Phục vụ qua <strong>gates</strong>: SDR/Bug Bar/FSR minh bạch & đo được.</li>
+        </ul>
+      </article>
+
+      <!-- SCM -->
+      <article class="card">
+        <div class="eyebrow">Configuration management (SCM)</div>
+        <h2>Quản lý cấu hình & toàn vẹn</h2>
+        <ul>
+          <li>Kiểm soát phiên bản & thay đổi của mọi CI: mã, tài liệu, pipeline, IaC, cấu hình, gói phát hành.</li>
+          <li>Áp dụng ký số artefact, SBOM; policy/admission chỉ cho phép image đã ký chạy ở prod.</li>
+          <li>Lợi ích: giảm lỗi cấu hình, rút ngắn khôi phục, hỗ trợ điều tra.</li>
+        </ul>
+      </article>
+
+      <!-- Technical reviews -->
+      <article class="card">
+        <div class="eyebrow">Technical reviews (FTR)</div>
+        <h2>Rà soát kỹ thuật có hệ thống</h2>
+        <ul>
+          <li><strong>Peer review/Walkthrough/Inspection</strong> cho yêu cầu, thiết kế, mã, test plan, runbook.</li>
+          <li>Trong Secure SDLC: mở rộng thành <span class="badge">SDR</span>, checklist secure code, và <span class="badge">FSR</span> trước Go‑Live.</li>
+          <li>Tạo biên bản, action items; giảm defect leakage, lan tỏa tri thức.</li>
+        </ul>
+      </article>
+
+      <!-- Overlay mini diagram -->
+      <div class="svg-card span2">
+        <h3 class="eyebrow">Sơ đồ — Umbrella overlay trên 5 hoạt động khung</h3>
+        <svg viewBox="0 0 960 160" role="img" aria-label="Umbrella activities overlay">
+          <!-- Activities row -->
+          <rect x="40" y="60" width="140" height="30" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+          <text x="110" y="79" text-anchor="middle" font-size="11">Communication</text>
+          <rect x="200" y="60" width="140" height="30" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+          <text x="270" y="79" text-anchor="middle" font-size="11">Planning</text>
+          <rect x="360" y="60" width="140" height="30" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+          <text x="430" y="79" text-anchor="middle" font-size="11">Modeling</text>
+          <rect x="520" y="60" width="140" height="30" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+          <text x="590" y="79" text-anchor="middle" font-size="11">Construction</text>
+          <rect x="680" y="60" width="140" height="30" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+          <text x="750" y="79" text-anchor="middle" font-size="11">Deployment</text>
+          <!-- Flow arrows -->
+          <line x1="180" y1="75" x2="200" y2="75" stroke="#94a3b8" stroke-width="2"/>
+          <polygon points="200,75 192,70 192,80" fill="#94a3b8"/>
+          <line x1="340" y1="75" x2="360" y2="75" stroke="#94a3b8" stroke-width="2"/>
+          <polygon points="360,75 352,70 352,80" fill="#94a3b8"/>
+          <line x1="500" y1="75" x2="520" y2="75" stroke="#94a3b8" stroke-width="2"/>
+          <polygon points="520,75 512,70 512,80" fill="#94a3b8"/>
+          <line x1="660" y1="75" x2="680" y2="75" stroke="#94a3b8" stroke-width="2"/>
+          <polygon points="680,75 672,70 672,80" fill="#94a3b8"/>
+          <!-- Umbrella band -->
+          <rect x="40" y="18" width="780" height="26" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+          <text x="430" y="35" text-anchor="middle" font-size="11">Tracking & Control • Risk Mgmt • SQA • SCM • Technical Reviews</text>
+          <!-- Dotted links down to each activity -->
+          <line x1="110" y1="44" x2="110" y2="60" stroke="#06b6d4" stroke-dasharray="4 3"/>
+          <line x1="270" y1="44" x2="270" y2="60" stroke="#06b6d4" stroke-dasharray="4 3"/>
+          <line x1="430" y1="44" x2="430" y2="60" stroke="#06b6d4" stroke-dasharray="4 3"/>
+          <line x1="590" y1="44" x2="590" y2="60" stroke="#06b6d4" stroke-dasharray="4 3"/>
+          <line x1="750" y1="44" x2="750" y2="60" stroke="#06b6d4" stroke-dasharray="4 3"/>
+        </svg>
+        <div class="caption">Các “ô dù” không thuộc riêng một pha; chúng <em>bọc</em> toàn bộ khung hoạt động và tạo bằng chứng liên tục.</div>
+      </div>
+
+      <!-- Case study risk table -->
+      <article class="card span2">
+        <div class="eyebrow">Case Study — e‑Clinic: Risk register (trích)</div>
+        <table aria-label="Risk register mini table">
+          <thead>
+            <tr>
+              <th style="width:10%">ID</th>
+              <th style="width:40%">Mô tả rủi ro</th>
+              <th style="width:15%">P×I</th>
+              <th style="width:20%">Mitigation</th>
+              <th style="width:15%">Trigger/Owner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>R‑01</td>
+              <td>Double‑booking do race condition khi đặt lịch cùng khung giờ.</td>
+              <td>Trung bình × Cao</td>
+              <td>Khoá lạc quan + ETag; test concurrency (50 req/s).</td>
+              <td>409 spike • TL</td>
+            </tr>
+            <tr>
+              <td>R‑02</td>
+              <td>Webhook BHYT không ổn định ⇒ lỗi xác minh quyền lợi.</td>
+              <td>TB × TB‑Cao</td>
+              <td>Outbox + retry/backoff; mTLS + allowlist; fallback thủ công.</td>
+              <td>3 fail/10’ • Backend</td>
+            </tr>
+            <tr>
+              <td>R‑03</td>
+              <td>Thiếu audit trail đủ chi tiết để xử lý khiếu nại.</td>
+              <td>Thấp × Cao</td>
+              <td>Chuẩn hoá sự kiện 5W1H; log bất biến 180 ngày.</td>
+              <td>Security</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout"><strong>Kết luận thực hành:</strong> coi các umbrella activities như “hệ miễn dịch” của dự án—luôn bật, luôn kiểm chứng, luôn sinh evidence; gắn vào milestones và gates để mỗi bản phát hành đều đáng tin.</div>
+      </article>
+    </section>
+
+    <div class="pagenum">8</div>
+  </main>
+</body>
+</html>

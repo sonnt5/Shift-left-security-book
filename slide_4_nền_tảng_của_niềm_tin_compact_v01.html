@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slide 3 — Principals, Identity & Trust Boundaries</title>
+  <style>
+    :root{
+      --bg:#f8fafc;  /* light */
+      --fg:#0b1220;  /* text */
+      --muted:#64748b; /* slate-500 */
+      --accent:#38bdf8; /* sky-400 */
+      --accent2:#a78bfa; /* violet-400 */
+      --danger:#ef4444;  /* red-500 */
+      --ok:#10b981;      /* green-500 */
+      --card:#ffffff;
+      --stroke:#cbd5e1;  /* slate-300 */
+      --ink:#0b1220;     /* text for svg labels */
+    }
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.55}
+    .slide{max-width:1100px;margin:40px auto;padding:28px 32px 48px;background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:18px;box-shadow:0 6px 24px rgba(0,0,0,.08);position:relative}
+    .brand{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .brand img{height:44px}
+    .brand h1{margin:0;font-size:24px;line-height:1.2;font-weight:800}
+    .grid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:minmax(180px,auto);gap:12px}
+    .card{border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:12px;background:var(--card)}
+    .eyebrow{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+    h2{margin:8px 0 6px;font-size:18px}
+    ul{margin:0 0 4px 1.0rem;padding:0}
+    li{margin:4px 0;font-size:14px}
+    .svg-card{background:#fff;border:1px solid var(--stroke);border-radius:12px;padding:10px}
+    .svg-card h3{margin:0 0 4px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+    .svg-card svg{max-width:100%;height:150px;display:block}
+    .legend{font-size:12px;color:var(--muted)}
+    .callout{margin-top:8px;border-left:4px solid var(--accent);background:rgba(56,189,248,.12);padding:10px 12px;border-radius:8px;font-size:14px}
+    .pagenum{position:absolute;bottom:10px;right:14px;font-size:13px;color:var(--muted)}
+  .svg-card svg.big{height:220px}
+</style>
+</head>
+<body>
+  <main class="slide" role="document">
+    <header class="brand"><img src="fpt_logo.png" alt="FPT University logo"><h1>Principals, Credential, Identity & Ranh giới tin cậy</h1></header>
+
+    <section class="grid">
+      <!-- TL: Definitions -->
+      <div class="card">
+        <div class="eyebrow">Định nghĩa cốt lõi</div>
+        <h2>Principals • Credential • Identity</h2>
+        <ul>
+          <li><strong>Principal</strong>: thực thể tương tác với hệ thống: <em>người dùng</em>, <em>dịch vụ</em>, <em>thiết bị</em>.</li>
+          <li><strong>Credential</strong>: bằng chứng sở hữu/nhận dạng (mật khẩu, khoá, chứng chỉ, token).</li>
+          <li><strong>Identity</strong>: danh tính đã <em>xác thực</em> của principal trong một bối cảnh cụ thể.</li>
+          <li><strong>Authorization ≠ Authentication</strong>: xác thực là <em>ai</em>, ủy quyền là <em>được làm gì</em>.</li>
+        </ul>
+        <p class="legend">Thiết kế phải làm rõ chủ thể nào đang hành động, bằng chứng nào được chấp nhận, và họ có thể làm gì.</p>
+      </div>
+
+      <!-- TR: Principals mini-diagram -->
+      <div class="svg-card">
+        <h3 class="eyebrow">Minh họa — Principals &amp; credentials (mở rộng)</h3>
+        <svg class="big" viewBox="0 0 720 280" role="img" aria-label="Principals and credentials with relationships">
+          <!-- IdP -->
+          <rect x="300" y="20" width="120" height="30" rx="6" fill="#ffffff" stroke="#6366f1"/>
+          <text x="360" y="40" text-anchor="middle" fill="#0b1220" font-size="12">IdP (OIDC)</text>
+
+          <!-- principals -->
+          <circle cx="120" cy="150" r="34" fill="#e0f2fe" stroke="#60a5fa"/>
+          <text x="120" y="156" text-anchor="middle" fill="#0b1220" font-size="12">User</text>
+
+          <circle cx="360" cy="150" r="34" fill="#ede9fe" stroke="#a78bfa"/>
+          <text x="360" y="156" text-anchor="middle" fill="#0b1220" font-size="12">Service</text>
+
+          <circle cx="600" cy="150" r="34" fill="#dcfce7" stroke="#22c55e"/>
+          <text x="600" y="156" text-anchor="middle" fill="#0b1220" font-size="12">Device</text>
+
+          <!-- credentials badges -->
+          <rect x="90" y="190" width="60" height="22" rx="6" fill="#fff" stroke="#60a5fa"/>
+          <text x="120" y="205" text-anchor="middle" fill="#0b1220" font-size="11">PW/MFA</text>
+
+          <rect x="330" y="190" width="60" height="22" rx="6" fill="#fff" stroke="#a78bfa"/>
+          <text x="360" y="205" text-anchor="middle" fill="#0b1220" font-size="11">mtls</text>
+
+          <rect x="570" y="190" width="60" height="22" rx="6" fill="#fff" stroke="#22c55e"/>
+          <text x="600" y="205" text-anchor="middle" fill="#0b1220" font-size="11">key</text>
+
+          <!-- flows: User -> IdP (AuthN) -->
+          <line x1="120" y1="116" x2="120" y2="70" stroke="#0ea5e9" stroke-width="2"/>
+          <polygon points="120,70 115,77 125,77" fill="#0ea5e9"/>
+          <text x="120" y="62" text-anchor="middle" fill="#0b1220" font-size="11">AuthN (PW/MFA)</text>
+
+          <!-- flows: IdP -> Service (token) -->
+          <line x1="360" y1="50" x2="360" y2="110" stroke="#6366f1" stroke-width="2"/>
+          <polygon points="360,110 355,103 365,103" fill="#6366f1"/>
+          <text x="360" y="66" text-anchor="middle" fill="#0b1220" font-size="11">OIDC token / SSO</text>
+
+          <!-- flows: User -> Service (session) -->
+          <line x1="154" y1="150" x2="326" y2="150" stroke="#94a3b8" stroke-dasharray="6 4" stroke-width="2"/>
+          <polygon points="326,150 318,145 318,155" fill="#94a3b8"/>
+          <text x="240" y="142" text-anchor="middle" fill="#334155" font-size="11">Session dựa trên token</text>
+
+          <!-- flows: Device -> Service (mTLS / attestation) -->
+          <line x1="566" y1="150" x2="394" y2="150" stroke="#22c55e" stroke-width="2"/>
+          <polygon points="394,150 402,145 402,155" fill="#22c55e"/>
+          <text x="480" y="142" text-anchor="middle" fill="#065f46" font-size="11">mTLS / key attestation</text>
+        </svg>
+        <p class="legend">Luồng chính: (1) <strong>User</strong> xác thực với <strong>IdP</strong> ⇒ sinh <em>token</em>; (2) <strong>Service</strong> tin token để tạo <em>session</em>; (3) <strong>Device</strong> kết nối dịch vụ bằng <em>mTLS/khóa</em>. Mỗi mối quan hệ phải có bằng chứng và giới hạn quyền rõ ràng.</p>
+        <ul class="legend" style="margin-top:6px">
+          <li><em>Token</em> hết hạn/thu hồi; scope tối thiểu.</li>
+          <li><em>mTLS</em> ràng buộc danh tính dịch vụ/thiết bị; chứng chỉ luân phiên.</li>
+          <li><em>Session</em> ràng buộc User-Agent/địa chỉ, chống replay.</li>
+        </ul>
+      </div>
+
+      <!-- BL: Trust boundary & chain of trust case -->
+      <div class="svg-card">
+        <h3 class="eyebrow">Case — Trust boundary: Patient App ↔ API ↔ EHR DB</h3>
+        <svg viewBox="0 0 720 220" role="img" aria-label="Trust boundary patient app api ehr">
+          <!-- zones -->
+          <rect x="20" y="30" width="200" height="160" rx="10" fill="#f0f9ff" stroke="#60a5fa"/>
+          <text x="120" y="48" text-anchor="middle" fill="#0b1220" font-size="12">Patient App</text>
+
+          <rect x="260" y="30" width="200" height="160" rx="10" fill="#eef2ff" stroke="#818cf8" stroke-dasharray="6 6"/>
+          <text x="360" y="48" text-anchor="middle" fill="#0b1220" font-size="12">API Gateway / Service</text>
+          <text x="360" y="64" text-anchor="middle" fill="#64748b" font-size="11">Trust Boundary</text>
+
+          <rect x="500" y="30" width="200" height="160" rx="10" fill="#ecfdf5" stroke="#22c55e"/>
+          <text x="600" y="48" text-anchor="middle" fill="#0b1220" font-size="12">EHR Database</text>
+
+          <!-- flows -->
+          <line x1="220" y1="110" x2="260" y2="110" stroke="#0ea5e9" stroke-width="3"/>
+          <polygon points="260,110 252,105 252,115" fill="#0ea5e9"/>
+          <text x="240" y="98" text-anchor="middle" fill="#0b1220" font-size="11">OIDC token</text>
+
+          <line x1="460" y1="110" x2="500" y2="110" stroke="#10b981" stroke-width="3"/>
+          <polygon points="500,110 492,105 492,115" fill="#10b981"/>
+          <text x="480" y="98" text-anchor="middle" fill="#0b1220" font-size="11">DB creds / role</text>
+
+          <!-- privilege change hotspots -->
+          <circle cx="260" cy="110" r="8" fill="#fff" stroke="#ef4444" stroke-width="2"/>
+          <text x="260" y="132" text-anchor="middle" fill="#ef4444" font-size="11">Đổi Đặc quyền</text>
+          <circle cx="500" cy="110" r="8" fill="#fff" stroke="#ef4444" stroke-width="2"/>
+          <text x="500" y="132" text-anchor="middle" fill="#ef4444" font-size="11">Đổi Đặc quyền</text>
+        </svg>
+        <p class="legend">Mọi điểm <em>đổi đặc quyền</em> (ví dụ đổi token ↔ role DB) là điểm rủi ro cao; cần xác thực mạnh, kiểm soát quyền chặt, và logging/auditing.</p>
+      </div>
+
+      <!-- BR: Chain of trust checklist -->
+      <div class="card">
+        <div class="eyebrow">Chain of Trust • Kiểm soát cần có</div>
+        <h2>Checklist nhanh</h2>
+        <ul>
+          <li><strong>AuthN</strong> người dùng (OIDC + MFA) → <strong>token</strong> kèm scope.</li>
+          <li><strong>AuthZ</strong> tại API: RBAC/ABAC; tách quyền đọc/ghi; deny-by-default.</li>
+          <li><strong>Service ↔ DB</strong>: tài khoản DB riêng theo dịch vụ, quyền tối thiểu, query param hoá.</li>
+          <li><strong>Auditing</strong>: log <em>who-when-what-where-result</em>; bất biến, có truy vấn phục vụ điều tra.</li>
+          <li><strong>Rotation</strong>: vòng đời khoá/chứng chỉ/secret; revoke khi nghi ngờ.</li>
+        </ul>
+        <div class="callout">Gợi ý lớp bài tập: vẽ dataflow của e‑Clinic, đánh dấu <em>trust boundary</em> và các điểm <em>đổi đặc quyền</em>.</div>
+      </div>
+    </section>
+
+    <div class="pagenum">3</div>
+  </main>
+</body>
+</html>

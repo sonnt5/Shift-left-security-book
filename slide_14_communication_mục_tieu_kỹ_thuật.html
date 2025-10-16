@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slide 14 — Communication — mục tiêu & kỹ thuật</title>
+  <style>
+    :root{--bg:#f8fafc;--fg:#0b1220;--muted:#64748b;--accent:#38bdf8;--accent2:#a78bfa;--ok:#10b981;--danger:#ef4444;--warn:#fb923c;--stroke:#cbd5e1;--card:#ffffff}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.55}
+    .slide{max-width:1100px;margin:40px auto;padding:24px 28px 52px;background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:18px;box-shadow:0 6px 24px rgba(0,0,0,.08);position:relative}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+    .brand img{height:56px}
+    .brand h1{margin:0;font-size:24px;line-height:1.2;font-weight:800}
+    .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:12px}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:10px;background:var(--card)}
+    .eyebrow{font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+    h2{margin:6px 0 6px;font-size:16px}
+    ul{margin:0 0 6px 1.0rem;padding:0}
+    li{margin:4px 0;font-size:13px}
+    p{margin:6px 0;font-size:13px}
+    .svg-card{background:#fff;border:1px solid var(--stroke);border-radius:14px;padding:10px}
+    .svg-card h3{margin:0 0 6px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+    .svg-card svg{max-width:100%;height:220px;display:block}
+    .span2{grid-column:1 / -1}
+    .caption{font-size:11px;color:var(--muted);margin-top:4px}
+    .callout{margin-top:6px;border-left:4px solid var(--accent);background:rgba(56,189,248,.12);padding:8px 10px;border-radius:8px;font-size:13px}
+    .pagenum{position:absolute;bottom:10px;right:14px;font-size:12px;color:var(--muted)}
+    table{width:100%;border-collapse:separate;border-spacing:0 6px}
+    th,td{font-size:12px;padding:6px 8px;background:#ffffff;border:1px solid var(--stroke)}
+    th{background:#f8fafc;color:#334155;text-align:left}
+  </style>
+</head>
+<body>
+  <main class="slide" role="document">
+    <header class="brand"><img src="fpt_logo.png" alt="FPT University logo"><h1>Communication — mục tiêu & kỹ thuật</h1></header>
+
+    <section class="grid">
+      <!-- Mục tiêu & kết quả -->
+      <article class="card">
+        <div class="eyebrow">Mục tiêu & kết quả mong đợi</div>
+        <h2>Biến ý tưởng mơ hồ → yêu cầu có thể kiểm thử</h2>
+        <ul>
+          <li>Chuỗi hành động: <strong>inception → elicitation → elaboration → negotiation → specification → validation</strong>.</li>
+          <li>Đầu ra: phạm vi thống nhất; danh sách yêu cầu & <strong>NFR đo được</strong>; giả định & ràng buộc; <em>artefacts nền</em> (SRS rút gọn, sơ đồ bối cảnh, từ điển thuật ngữ).</li>
+          <li>Thiết lập <strong>traceability seed</strong> (REQ-* ↔ use case/test) để bước sau kế thừa.</li>
+        </ul>
+      </article>
+
+      <!-- Artefacts & QA & Milestone -->
+      <article class="card">
+        <div class="eyebrow">Artefacts • QA • Milestone</div>
+        <h2>Work products & kiểm soát chất lượng</h2>
+        <ul>
+          <li><strong>Work products</strong>: SRS rút gọn; sơ đồ bối cảnh & luồng chính; glossary; danh sách giả định/ràng buộc.</li>
+          <li><strong>QA points</strong>: walkthrough/peer review; kiểm <em>testability</em> từng yêu cầu; kiểm tính nhất quán thuật ngữ; conflict matrix.</li>
+          <li><strong>Milestone M1 — Scope Freeze</strong>: SRS được duyệt; NFR có metric/target/workload; traceability khởi tạo.</li>
+        </ul>
+      </article>
+
+      <!-- Sơ đồ: Chu kỳ Communication -->
+      <div class="svg-card span2">
+        <h3 class="eyebrow">Sơ đồ — Chu kỳ Communication (theo Pressman)</h3>
+        <svg viewBox="0 0 980 300" role="img" aria-label="Communication cycle with artefacts">
+          <!-- top: phases -->
+          <g font-size="12" fill="#0b1220" text-anchor="middle">
+            <rect x="30"  y="30" width="120" height="40" rx="10" fill="#ecfeff" stroke="#06b6d4"/>
+            <text x="90"  y="54">Inception</text>
+
+            <rect x="170" y="30" width="120" height="40" rx="10" fill="#fff7ed" stroke="#fb923c"/>
+            <text x="230" y="54">Elicitation</text>
+
+            <rect x="310" y="30" width="120" height="40" rx="10" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="370" y="54">Elaboration</text>
+
+            <rect x="450" y="30" width="120" height="40" rx="10" fill="#ecfdf5" stroke="#10b981"/>
+            <text x="510" y="54">Negotiation</text>
+
+            <rect x="590" y="30" width="120" height="40" rx="10" fill="#f1f5f9" stroke="#cbd5e1"/>
+            <text x="650" y="54">Specification</text>
+
+            <rect x="730" y="30" width="120" height="40" rx="10" fill="#fde68a" stroke="#f59e0b"/>
+            <text x="790" y="54">Validation</text>
+          </g>
+          <!-- arrows between phases -->
+          <g stroke="#0ea5e9" stroke-width="2">
+            <line x1="150" y1="50" x2="170" y2="50"/>
+            <polygon points="170,50 162,45 162,55" fill="#0ea5e9"/>
+            <line x1="290" y1="50" x2="310" y2="50"/>
+            <polygon points="310,50 302,45 302,55" fill="#0ea5e9"/>
+            <line x1="430" y1="50" x2="450" y2="50"/>
+            <polygon points="450,50 442,45 442,55" fill="#0ea5e9"/>
+            <line x1="570" y1="50" x2="590" y2="50"/>
+            <polygon points="590,50 582,45 582,55" fill="#0ea5e9"/>
+            <line x1="710" y1="50" x2="730" y2="50"/>
+            <polygon points="730,50 722,45 722,55" fill="#0ea5e9"/>
+          </g>
+
+          <!-- QA markers -->
+          <g font-size="10" fill="#334155">
+            <circle cx="230" cy="20" r="8" fill="#ecfeff" stroke="#06b6d4"/>
+            <text x="230" y="24" text-anchor="middle">QA</text>
+            <circle cx="650" cy="20" r="8" fill="#ecfeff" stroke="#06b6d4"/>
+            <text x="650" y="24" text-anchor="middle">QA</text>
+            <circle cx="790" cy="20" r="8" fill="#ecfeff" stroke="#06b6d4"/>
+            <text x="790" y="24" text-anchor="middle">QA</text>
+          </g>
+
+          <!-- middle: artefacts produced by each phase -->
+          <g font-size="11" fill="#0b1220">
+            <rect x="30"  y="100" width="120" height="48" rx="8" fill="#fff" stroke="#cbd5e1"/>
+            <text x="90"  y="118" text-anchor="middle">Project brief</text>
+            <text x="90"  y="132" text-anchor="middle">+ stakeholder list</text>
+
+            <rect x="170" y="100" width="120" height="48" rx="8" fill="#fff" stroke="#cbd5e1"/>
+            <text x="230" y="118" text-anchor="middle">Interview notes</text>
+            <text x="230" y="132" text-anchor="middle">+ risk list</text>
+
+            <rect x="310" y="100" width="120" height="48" rx="8" fill="#fff" stroke="#cbd5e1"/>
+            <text x="370" y="118" text-anchor="middle">Use cases</text>
+            <text x="370" y="132" text-anchor="middle">+ priorities</text>
+
+            <rect x="450" y="100" width="120" height="48" rx="8" fill="#fff" stroke="#cbd5e1"/>
+            <text x="510" y="118" text-anchor="middle">Conflict matrix</text>
+            <text x="510" y="132" text-anchor="middle">+ decisions</text>
+
+            <rect x="590" y="100" width="120" height="48" rx="8" fill="#fff" stroke="#cbd5e1"/>
+            <text x="650" y="116" text-anchor="middle">SRS seed</text>
+            <text x="650" y="130" text-anchor="middle">Context + Glossary</text>
+
+            <rect x="730" y="100" width="120" height="48" rx="8" fill="#fff" stroke="#cbd5e1"/>
+            <text x="790" y="118" text-anchor="middle">Walkthrough notes</text>
+            <text x="790" y="132" text-anchor="middle">+ AC refined</text>
+          </g>
+
+          <!-- connectors down from phases to artefacts -->
+          <g stroke="#94a3b8">
+            <line x1="90"  y1="70" x2="90"  y2="100"/>
+            <line x1="230" y1="70" x2="230" y2="100"/>
+            <line x1="370" y1="70" x2="370" y2="100"/>
+            <line x1="510" y1="70" x2="510" y2="100"/>
+            <line x1="650" y1="70" x2="650" y2="100"/>
+            <line x1="790" y1="70" x2="790" y2="100"/>
+          </g>
+
+          <!-- bottom: traceability seed + milestone bar -->
+          <rect x="160" y="170" width="660" height="34" rx="10" fill="#eef2ff" stroke="#818cf8"/>
+          <text x="490" y="192" text-anchor="middle" font-size="12">Traceability seed — REQ-* ↔ Use case ↔ AC/Test</text>
+
+          <g>
+            <line x1="650" y1="148" x2="490" y2="170" stroke="#94a3b8"/>
+            <line x1="370" y1="148" x2="330" y2="170" stroke="#94a3b8"/>
+          </g>
+
+          <!-- milestone bar -->
+          <rect x="60" y="230" width="860" height="20" rx="10" fill="#0ea5e9" opacity="0.12" stroke="#0ea5e9"/>
+          <text x="490" y="244" text-anchor="middle" font-size="12" fill="#0b1220">Milestone: M1 — Scope Freeze (SRS ✓ • NFR measurable ✓ • Traceability init ✓)</text>
+        </svg>
+        <div class="caption">Mỗi bước tạo ra artefacts cụ thể và điểm kiểm (QA) tương ứng để tiến tới <strong>M1 — Scope Freeze</strong>.</div>
+      </div>
+
+      <!-- Sơ đồ: Bản đồ kỹ thuật Elicitation -->
+      <div class="svg-card span2">
+        <h3 class="eyebrow">Sơ đồ — Bản đồ kỹ thuật elicitation</h3>
+        <svg viewBox="0 0 980 300" role="img" aria-label="Elicitation techniques map with outputs">
+          <rect x="24" y="20" width="932" height="260" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+          <!-- hub -->
+          <circle cx="150" cy="90" r="28" fill="#ecfeff" stroke="#06b6d4"/>
+          <text x="150" y="94" text-anchor="middle" font-size="11">Elicitation</text>
+          <!-- techniques (left/middle) -->
+          <g font-size="12">
+            <rect x="210" y="44" width="150" height="36" rx="8" fill="#fff7ed" stroke="#fb923c"/>
+            <text x="285" y="66" text-anchor="middle">Interviews</text>
+            <rect x="210" y="96" width="150" height="36" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
+            <text x="285" y="118" text-anchor="middle">Workshops/JAD</text>
+            <rect x="210" y="148" width="150" height="36" rx="8" fill="#ecfdf5" stroke="#10b981"/>
+            <text x="285" y="170" text-anchor="middle">Observation</text>
+            <rect x="210" y="200" width="150" height="36" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="285" y="222" text-anchor="middle">Prototype</text>
+          </g>
+          <!-- outputs (right) -->
+          <g font-size="12">
+            <rect x="520" y="34" width="170" height="34" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="605" y="55" text-anchor="middle">Interview notes → SRS section</text>
+
+            <rect x="520" y="76" width="170" height="34" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="605" y="97" text-anchor="middle">Risk list → Risk register</text>
+
+            <rect x="520" y="118" width="170" height="34" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="605" y="139" text-anchor="middle">Workshop minutes → Use cases</text>
+
+            <rect x="520" y="160" width="170" height="34" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="605" y="181" text-anchor="middle">Observation findings → NFR/constraints</text>
+
+            <rect x="520" y="202" width="170" height="34" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="605" y="223" text-anchor="middle">Prototype flows → AC/Test ideas</text>
+
+            <rect x="710" y="76" width="220" height="34" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="820" y="97" text-anchor="middle">Stories/Use cases → Traceability seed</text>
+
+            <rect x="710" y="118" width="220" height="34" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="820" y="139" text-anchor="middle">NFR scenarios → NFR spec (metric/target)</text>
+
+            <rect x="710" y="160" width="220" height="34" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+            <text x="820" y="181" text-anchor="middle">API mock → Contract tests</text>
+          </g>
+          <!-- connectors -->
+          <g stroke="#94a3b8">
+            <line x1="178" y1="90"  x2="210" y2="62"/>
+            <line x1="178" y1="90"  x2="210" y2="114"/>
+            <line x1="178" y1="90"  x2="210" y2="166"/>
+            <line x1="178" y1="90"  x2="210" y2="218"/>
+
+            <line x1="360" y1="62"  x2="520" y2="51"/>
+            <line x1="360" y1="114" x2="520" y2="93"/>
+            <line x1="360" y1="166" x2="520" y2="135"/>
+            <line x1="360" y1="218" x2="520" y2="177"/>
+
+            <line x1="360" y1="114" x2="710" y2="93"/>
+            <line x1="360" y1="218" x2="710" y2="177"/>
+          </g>
+          <!-- legend small -->
+          <g font-size="11" fill="#334155">
+            <text x="605" y="248" text-anchor="middle">Mỗi kỹ thuật tạo artefact cụ thể và nuôi SRS/Traceability/NFR spec</text>
+          </g>
+        </svg>
+        <div class="caption">Kết hợp nhiều kỹ thuật để giảm mơ hồ; mỗi kỹ thuật sinh <em>artefacts</em> và tiêu chí kiểm riêng.</div>
+      </div>
+
+      <!-- Sơ đồ: Stakeholders & scope boundary -->
+      <div class="svg-card span2">
+        <h3 class="eyebrow">Sơ đồ — Stakeholders & phạm vi/kênh phản hồi (gắn artefacts)</h3>
+        <svg viewBox="0 0 980 320" role="img" aria-label="Stakeholders, scope, and artefacts (non-overlapping links)">
+          <!-- system boundary with artefacts inside -->
+          <rect x="330" y="40" width="320" height="200" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+          <text x="490" y="58" text-anchor="middle" font-size="12" fill="#334155">Hệ thống (context)</text>
+
+          <!-- artefacts inside system -->
+          <g font-size="11">
+            <rect x="350" y="80" width="130" height="34" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="415" y="102" text-anchor="middle">SRS (use cases + NFR)</text>
+
+            <rect x="500" y="80" width="130" height="34" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="565" y="102" text-anchor="middle">Context diagram</text>
+
+            <rect x="350" y="130" width="130" height="34" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="415" y="152" text-anchor="middle">Glossary</text>
+
+            <rect x="500" y="130" width="130" height="34" rx="8" fill="#eef2ff" stroke="#818cf8"/>
+            <text x="565" y="152" text-anchor="middle">Traceability seed</text>
+          </g>
+
+          <!-- personas outside -->
+          <g font-size="12">
+            <rect x="40" y="90" width="120" height="36" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+            <text x="100" y="112" text-anchor="middle">Bệnh nhân</text>
+            <rect x="40" y="140" width="120" height="36" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+            <text x="100" y="162" text-anchor="middle">Bác sĩ</text>
+            <rect x="180" y="115" width="120" height="36" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+            <text x="240" y="137" text-anchor="middle">Lễ tân</text>
+
+            <rect x="730" y="90" width="160" height="36" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
+            <text x="810" y="112" text-anchor="middle">Vận hành / CS</text>
+            <rect x="730" y="140" width="160" height="36" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
+            <text x="810" y="162" text-anchor="middle">An toàn TT / Tuân thủ</text>
+          </g>
+
+          <!-- feedback channels -->
+          <g font-size="11" fill="#334155">
+            <rect x="420" y="190" width="140" height="28" rx="8" fill="#ecfeff" stroke="#06b6d4"/>
+            <text x="490" y="208" text-anchor="middle">Backlog review / CR</text>
+            <text x="490" y="236" text-anchor="middle">Single source of truth (ALM/wiki)</text>
+          </g>
+
+          <!-- non-overlapping link routing: use polylines with elbows -->
+          <g stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Left personas to SRS/Glossary -->
+            <!-- Bệnh nhân -> SRS -->
+            <polyline points="160,108 300,108 300,97 350,97" />
+            <!-- Bác sĩ -> Glossary -->
+            <polyline points="160,158 300,158 300,147 350,147" />
+            <!-- Lễ tân -> Traceability seed -->
+            <polyline points="300,133 300,147 500,147" />
+
+            <!-- Right teams to Context/Traceability (route left then up/down) -->
+            <!-- Vận hành/CS -> Context diagram -->
+            <polyline points="730,108 680,108 680,97 630,97" />
+            <!-- An toàn/ Tuân thủ -> Traceability seed -->
+            <polyline points="730,158 680,158 680,147 630,147" />
+
+            <!-- Internal artefact relations (avoid labels) -->
+            <!-- SRS -> Traceability seed (down-right elbow) -->
+            <polyline points="415,114 415,132 500,132" />
+            <!-- Context diagram -> SRS (up-left elbow) -->
+            <polyline points="565,114 565,100 480,100 480,97 480,97" />
+          </g>
+
+          <!-- legend small -->
+          <g font-size="11" fill="#334155">
+            <text x="490" y="280" text-anchor="middle">Liên kết dùng đường gãy (elbow) để tránh đè lên thành phần; mỗi mũi tên chỉ dòng thông tin/ảnh hưởng tới artefacts trong hệ thống</text>
+          </g>
+        </svg>
+        <div class="caption">Xác định stakeholder, ranh giới hệ thống và kênh phản hồi ngay từ đầu để giảm trễ thông tin & mâu thuẫn.</div>
+      </div>
+
+      <!-- Case Study -->
+      <article class="card span2">
+        <div class="eyebrow">Case Study — e‑Clinic</div>
+        <h2>Persona & ví dụ minh hoạ</h2>
+        <ul>
+          <li><strong>Bệnh nhân</strong>: đặt/xem/hủy; <em>usability</em> ≤ 3 bước, <em>hiệu năng</em> tìm slot ≤ 300 ms p95, bảo vệ PII.</li>
+          <li><strong>Bác sĩ</strong>: xem lịch & hồ sơ; <em>separation of privilege</em>, <em>auditability</em> truy cập hồ sơ, sẵn sàng ca trực.</li>
+          <li><strong>Lễ tân</strong>: đặt thay; <em>consistency</em> (không double‑booking), <em>observability</em> (log thao tác), <em>khả năng khôi phục</em> khi hệ ngoại vi lỗi.</li>
+          <li><strong>Workshop mẫu</strong>: mô phỏng luồng “Đặt lịch” end‑to‑end; chốt NFR; dựng click‑through prototype; cập nhật SRS & trace REQ‑EC‑001..003; QA: walkthrough SRS với đủ vai.</li>
+        </ul>
+        <div class="callout"><strong>Kết luận</strong>: Communication tốt = artefacts kiểm thử được + NFR lượng hoá + kênh phản hồi rõ ràng → khoá <strong>M1 — Scope Freeze</strong> bằng bằng chứng.</div>
+      </article>
+
+    </section>
+
+    <div class="pagenum">14</div>
+  </main>
+</body>
+</html>
