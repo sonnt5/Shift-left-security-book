@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang='vi'>
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>Chapter 1 - Introduction to Secure-SDLC (HTML Render)</title>
+  <style>
+    body { margin: 0; background: #111; }
+    .notice { 
+      max-width: 1200px; 
+      margin: 0 auto 12px; 
+      padding: 20px; 
+      background: #fffbea; 
+      border-left: 4px solid #f59e0b; 
+      color: #333; 
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      line-height: 1.6;
+    }
+    .notice h2 { 
+      margin: 0 0 12px; 
+      color: #f59e0b; 
+      font-size: 18px; 
+    }
+    .notice p { margin: 8px 0; font-size: 14px; }
+    .notice ul { margin: 8px 0; padding-left: 20px; }
+    .notice li { margin: 4px 0; }
+    .notice strong { color: #000; }
+    .page { display: flex; justify-content: center; padding: 16px; }
+    .page img { width: 100%; height: auto; max-width: 1200px; box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+    .page-num { color: #bbb; font: 12px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial; text-align: center; margin: 6px 0 24px; }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const viNotice = document.querySelector('.notice');
+      if (!viNotice) return;
+
+      const enNotice = document.createElement('div');
+      enNotice.className = 'notice';
+      enNotice.setAttribute('lang', 'en');
+      enNotice.innerHTML = `
+        <h2>⚠️ Notice on Editing Status and Ownership</h2>
+        <p>This document is currently under editing and content review. It may therefore contain unverified issues, including but not limited to:</p>
+        <ul>
+          <li>Typos, grammar errors, or formatting inconsistencies;</li>
+          <li>Minor inaccuracies or omissions in content, citations, or illustrations;</li>
+          <li>Some sections may not yet be fully updated compared to the official release.</li>
+        </ul>
+        <p>This document is the property of the Training Program at FPT University, drafted and edited by <strong>Dr. Ngo Tung Son</strong> — Head of the Information Security Department, FPT University.</p>
+        <p>Any reproduction, distribution, quotation, or reuse — for commercial or non-commercial purposes — must clearly cite the source:</p>
+        <p><strong>Source:</strong> Ngo Tung Son (FPT University) — Teaching materials for the Secure SDLC course.</p>
+        <p>Feedback and suggested edits are welcome prior to official publication. <strong>Email:</strong> sonnt5@fpt.edu.vn</p>
+      `;
+
+      viNotice.parentNode.insertBefore(enNotice, viNotice);
+    });
+  </script>
+</head>
+<body>
+  <div class='notice'>
+    <h2>⚠️ Thông cáo về phiên bản chỉnh sửa và quyền sở hữu</h2>
+    <p>Phiên bản tài liệu này hiện đang trong quá trình chỉnh sửa và biên tập nội dung. Do đó, nó có thể chứa một số lỗi chưa được rà soát kỹ lưỡng, bao gồm nhưng không giới hạn ở:</p>
+    <ul>
+      <li>Lỗi chính tả, ngữ pháp, hoặc định dạng;</li>
+      <li>Các thiếu sót hoặc sai sót nhỏ trong nội dung, trích dẫn, hoặc hình minh họa;</li>
+      <li>Một số phần có thể chưa được cập nhật đầy đủ so với bản chính thức.</li>
+    </ul>
+    <p>Tài liệu này là tài sản thuộc về Chương trình Đào tạo của Trường Đại học FPT, được soạn thảo và biên tập bởi <strong>Tiến sĩ Ngô Tùng Sơn</strong> — Chủ nhiệm Bộ môn An toàn Thông tin, Trường Đại học FPT.</p>
+    <p>Mọi hình thức sao chép, phân phối, trích dẫn hoặc sử dụng lại — dù với mục đích thương mại hay phi thương mại — đều phải ghi rõ nguồn gốc:</p>
+    <p><strong>Nguồn:</strong> Ngô Tùng Sơn (FPT University) — Tài liệu giảng dạy môn Secure SDLC.</p>
+    <p>Mọi góp ý và chỉnh sửa xin gửi về nhóm biên soạn để hoàn thiện trước khi công bố chính thức. <strong>Email:</strong> sonnt5@fpt.edu.vn</p>
+  </div>
+  <section class='page'>
+    <img src='assets/page-001.png' alt='Page 1' />
+  </section>
+  <div class='page-num'>Page 1</div>
+  <section class='page'>
+    <img src='assets/page-002.png' alt='Page 2' />
+  </section>
+  <div class='page-num'>Page 2</div>
+  <section class='page'>
+    <img src='assets/page-003.png' alt='Page 3' />
+  </section>
+  <div class='page-num'>Page 3</div>
+  <section class='page'>
+    <img src='assets/page-004.png' alt='Page 4' />
+  </section>
+  <div class='page-num'>Page 4</div>
+  <section class='page'>
+    <img src='assets/page-005.png' alt='Page 5' />
+  </section>
+  <div class='page-num'>Page 5</div>
+  <section class='page'>
+    <img src='assets/page-006.png' alt='Page 6' />
+  </section>
+  <div class='page-num'>Page 6</div>
+  <section class='page'>
+    <img src='assets/page-007.png' alt='Page 7' />
+  </section>
+  <div class='page-num'>Page 7</div>
+  <section class='page'>
+    <img src='assets/page-008.png' alt='Page 8' />
+  </section>
+  <div class='page-num'>Page 8</div>
+  <section class='page'>
+    <img src='assets/page-009.png' alt='Page 9' />
+  </section>
+  <div class='page-num'>Page 9</div>
+  <section class='page'>
+    <img src='assets/page-010.png' alt='Page 10' />
+  </section>
+  <div class='page-num'>Page 10</div>
+  <section class='page'>
+    <img src='assets/page-011.png' alt='Page 11' />
+  </section>
+  <div class='page-num'>Page 11</div>
+  <section class='page'>
+    <img src='assets/page-012.png' alt='Page 12' />
+  </section>
+  <div class='page-num'>Page 12</div>
+  <section class='page'>
+    <img src='assets/page-013.png' alt='Page 13' />
+  </section>
+  <div class='page-num'>Page 13</div>
+  <section class='page'>
+    <img src='assets/page-014.png' alt='Page 14' />
+  </section>
+  <div class='page-num'>Page 14</div>
+  <section class='page'>
+    <img src='assets/page-015.png' alt='Page 15' />
+  </section>
+  <div class='page-num'>Page 15</div>
+  <section class='page'>
+    <img src='assets/page-016.png' alt='Page 16' />
+  </section>
+  <div class='page-num'>Page 16</div>
+  <section class='page'>
+    <img src='assets/page-017.png' alt='Page 17' />
+  </section>
+  <div class='page-num'>Page 17</div>
+  <section class='page'>
+    <img src='assets/page-018.png' alt='Page 18' />
+  </section>
+  <div class='page-num'>Page 18</div>
+  <section class='page'>
+    <img src='assets/page-019.png' alt='Page 19' />
+  </section>
+  <div class='page-num'>Page 19</div>
+  <section class='page'>
+    <img src='assets/page-020.png' alt='Page 20' />
+  </section>
+  <div class='page-num'>Page 20</div>
+  <section class='page'>
+    <img src='assets/page-021.png' alt='Page 21' />
+  </section>
+  <div class='page-num'>Page 21</div>
+  <section class='page'>
+    <img src='assets/page-022.png' alt='Page 22' />
+  </section>
+  <div class='page-num'>Page 22</div>
+  <section class='page'>
+    <img src='assets/page-023.png' alt='Page 23' />
+  </section>
+  <div class='page-num'>Page 23</div>
+  <section class='page'>
+    <img src='assets/page-024.png' alt='Page 24' />
+  </section>
+  <div class='page-num'>Page 24</div>
+  <section class='page'>
+    <img src='assets/page-025.png' alt='Page 25' />
+  </section>
+  <div class='page-num'>Page 25</div>
+  <section class='page'>
+    <img src='assets/page-026.png' alt='Page 26' />
+  </section>
+  <div class='page-num'>Page 26</div>
+  <section class='page'>
+    <img src='assets/page-027.png' alt='Page 27' />
+  </section>
+  <div class='page-num'>Page 27</div>
+  <section class='page'>
+    <img src='assets/page-028.png' alt='Page 28' />
+  </section>
+  <div class='page-num'>Page 28</div>
+  <section class='page'>
+    <img src='assets/page-029.png' alt='Page 29' />
+  </section>
+  <div class='page-num'>Page 29</div>
+  <section class='page'>
+    <img src='assets/page-030.png' alt='Page 30' />
+  </section>
+  <div class='page-num'>Page 30</div>
+  <section class='page'>
+    <img src='assets/page-031.png' alt='Page 31' />
+  </section>
+  <div class='page-num'>Page 31</div>
+  <section class='page'>
+    <img src='assets/page-032.png' alt='Page 32' />
+  </section>
+  <div class='page-num'>Page 32</div>
+  <section class='page'>
+    <img src='assets/page-033.png' alt='Page 33' />
+  </section>
+  <div class='page-num'>Page 33</div>
+  <section class='page'>
+    <img src='assets/page-034.png' alt='Page 34' />
+  </section>
+  <div class='page-num'>Page 34</div>
+  <section class='page'>
+    <img src='assets/page-035.png' alt='Page 35' />
+  </section>
+  <div class='page-num'>Page 35</div>
+  <section class='page'>
+    <img src='assets/page-036.png' alt='Page 36' />
+  </section>
+  <div class='page-num'>Page 36</div>
+  <section class='page'>
+    <img src='assets/page-037.png' alt='Page 37' />
+  </section>
+  <div class='page-num'>Page 37</div>
+</body>
+</html>

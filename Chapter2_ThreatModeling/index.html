@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang='vi'>
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>Chapter 2 — Threat Modeling (HTML Render with Notice)</title>
+  <style>
+    :root { --bg: #0b0b0b; --fg: #e5e7eb; --muted: #9ca3af; --accent: #f59e0b; --card: #121212; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    .notice { position: relative; padding: 18px 16px 0; background: linear-gradient(180deg, #1f2937 0%, rgba(31,41,55,0) 100%); }
+    .notice .box { max-width: 1100px; margin: 0 auto; background: var(--card); border: 1px solid #374151; border-radius: 12px; padding: 16px 18px; box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+    .notice h2 { margin: 0 0 6px; font-size: 18px; line-height: 1.3; }
+    .notice p { margin: 6px 0; font-size: 14px; line-height: 1.6; color: var(--fg); }
+    .notice blockquote { margin: 8px 0 4px; padding-left: 10px; border-left: 3px solid var(--accent); color: var(--muted); }
+    .pages { padding: 8px 0 24px; }
+    .page { display: flex; justify-content: center; padding: 14px 16px; }
+    .page img { width: 100%; height: auto; max-width: 1200px; box-shadow: 0 6px 24px rgba(0,0,0,.35); background: #fff; }
+    .page-num { color: var(--muted); font-size: 12px; text-align: center; margin: 6px 0 22px; }
+  </style>
+</head>
+<body>
+<section class="notice">
+  <div class="box">
+    <h2>⚠️ Notice Regarding Draft Version & Ownership</h2>
+    <p>This document version is currently under <strong>revision and editing</strong>. Therefore, there may exist <strong>errors</strong> not yet thoroughly reviewed (spelling, grammar, formatting), minor <strong>omissions or inaccuracies</strong> in content/citations/illustrations, or some sections <strong>not fully updated</strong> compared to the official version.</p>
+    <p>This document is <strong>property of the FPT University Training Program</strong>, <strong>authored and edited by Dr. Ngo Tung Son — Head of Information Security Department, FPT University</strong>. Any form of <strong>reproduction, distribution, citation or reuse</strong> (for <em>commercial or non-commercial purposes</em>) must <strong>clearly credit the source</strong>:</p>
+    <blockquote><em>Source: Ngo Tung Son (FPT University) — Teaching Materials for Secure SDLC Course.</em></blockquote>
+    <p>This document is intended for <strong>internal reference and review only</strong>. All feedback should be sent to the editorial team before official publication.</p>
+  </div>
+</section>
+<section class="notice">
+  <div class="box">
+    <h2>⚠️ Thông cáo về phiên bản chỉnh sửa & quyền sở hữu</h2>
+    <p>Phiên bản tài liệu này đang trong quá trình <strong>chỉnh sửa và biên tập</strong>. Do đó, có thể tồn tại <strong>các lỗi</strong> chưa được rà soát kỹ lưỡng (chính tả, ngữ pháp, định dạng), các <strong>thiếu sót hoặc sai sót nhỏ</strong> về nội dung/trích dẫn/hình minh họa, hoặc một số phần <strong>chưa được cập nhật đầy đủ</strong> so với bản chính thức.</p>
+    <p>Tài liệu này là <strong>tài sản thuộc về Chương trình Đào tạo của Trường Đại học FPT</strong>, được <strong>soạn thảo và biên tập bởi Tiến sĩ Ngô Tùng Sơn — Chủ nhiệm Bộ môn An toàn Thông tin, Trường Đại học FPT</strong>. Mọi hình thức <strong>sao chép, phân phối, trích dẫn hoặc sử dụng lại</strong> (cho <em>mục đích thương mại hoặc phi thương mại</em>) đều <strong>phải ghi rõ nguồn</strong>:</p>
+    <blockquote><em>Nguồn: Ngô Tùng Sơn (FPT University) — Tài liệu giảng dạy môn Secure SDLC.</em></blockquote>
+    <p>Tài liệu chỉ phục vụ <strong>tham khảo và phản biện nội bộ</strong>. Mọi góp ý xin gửi về nhóm biên soạn trước khi công bố chính thức.</p>
+  </div>
+</section>
+
+  <main class='pages'>
+    <section class='page'>
+      <img src='assets/page-001.png' alt='Page 1' />
+    </section>
+    <div class='page-num'>Page 1</div>
+    <section class='page'>
+      <img src='assets/page-002.png' alt='Page 2' />
+    </section>
+    <div class='page-num'>Page 2</div>
+    <section class='page'>
+      <img src='assets/page-003.png' alt='Page 3' />
+    </section>
+    <div class='page-num'>Page 3</div>
+    <section class='page'>
+      <img src='assets/page-004.png' alt='Page 4' />
+    </section>
+    <div class='page-num'>Page 4</div>
+    <section class='page'>
+      <img src='assets/page-005.png' alt='Page 5' />
+    </section>
+    <div class='page-num'>Page 5</div>
+    <section class='page'>
+      <img src='assets/page-006.png' alt='Page 6' />
+    </section>
+    <div class='page-num'>Page 6</div>
+    <section class='page'>
+      <img src='assets/page-007.png' alt='Page 7' />
+    </section>
+    <div class='page-num'>Page 7</div>
+    <section class='page'>
+      <img src='assets/page-008.png' alt='Page 8' />
+    </section>
+    <div class='page-num'>Page 8</div>
+    <section class='page'>
+      <img src='assets/page-009.png' alt='Page 9' />
+    </section>
+    <div class='page-num'>Page 9</div>
+    <section class='page'>
+      <img src='assets/page-010.png' alt='Page 10' />
+    </section>
+    <div class='page-num'>Page 10</div>
+    <section class='page'>
+      <img src='assets/page-011.png' alt='Page 11' />
+    </section>
+    <div class='page-num'>Page 11</div>
+    <section class='page'>
+      <img src='assets/page-012.png' alt='Page 12' />
+    </section>
+    <div class='page-num'>Page 12</div>
+    <section class='page'>
+      <img src='assets/page-013.png' alt='Page 13' />
+    </section>
+    <div class='page-num'>Page 13</div>
+    <section class='page'>
+      <img src='assets/page-014.png' alt='Page 14' />
+    </section>
+    <div class='page-num'>Page 14</div>
+    <section class='page'>
+      <img src='assets/page-015.png' alt='Page 15' />
+    </section>
+    <div class='page-num'>Page 15</div>
+    <section class='page'>
+      <img src='assets/page-016.png' alt='Page 16' />
+    </section>
+    <div class='page-num'>Page 16</div>
+    <section class='page'>
+      <img src='assets/page-017.png' alt='Page 17' />
+    </section>
+    <div class='page-num'>Page 17</div>
+    <section class='page'>
+      <img src='assets/page-018.png' alt='Page 18' />
+    </section>
+    <div class='page-num'>Page 18</div>
+    <section class='page'>
+      <img src='assets/page-019.png' alt='Page 19' />
+    </section>
+    <div class='page-num'>Page 19</div>
+    <section class='page'>
+      <img src='assets/page-020.png' alt='Page 20' />
+    </section>
+    <div class='page-num'>Page 20</div>
+    <section class='page'>
+      <img src='assets/page-021.png' alt='Page 21' />
+    </section>
+    <div class='page-num'>Page 21</div>
+    <section class='page'>
+      <img src='assets/page-022.png' alt='Page 22' />
+    </section>
+    <div class='page-num'>Page 22</div>
+    <section class='page'>
+      <img src='assets/page-023.png' alt='Page 23' />
+    </section>
+    <div class='page-num'>Page 23</div>
+    <section class='page'>
+      <img src='assets/page-024.png' alt='Page 24' />
+    </section>
+    <div class='page-num'>Page 24</div>
+    <section class='page'>
+      <img src='assets/page-025.png' alt='Page 25' />
+    </section>
+    <div class='page-num'>Page 25</div>
+    <section class='page'>
+      <img src='assets/page-026.png' alt='Page 26' />
+    </section>
+    <div class='page-num'>Page 26</div>
+    <section class='page'>
+      <img src='assets/page-027.png' alt='Page 27' />
+    </section>
+    <div class='page-num'>Page 27</div>
+    <section class='page'>
+      <img src='assets/page-028.png' alt='Page 28' />
+    </section>
+    <div class='page-num'>Page 28</div>
+    <section class='page'>
+      <img src='assets/page-029.png' alt='Page 29' />
+    </section>
+    <div class='page-num'>Page 29</div>
+    <section class='page'>
+      <img src='assets/page-030.png' alt='Page 30' />
+    </section>
+    <div class='page-num'>Page 30</div>
+    <section class='page'>
+      <img src='assets/page-031.png' alt='Page 31' />
+    </section>
+    <div class='page-num'>Page 31</div>
+    <section class='page'>
+      <img src='assets/page-032.png' alt='Page 32' />
+    </section>
+    <div class='page-num'>Page 32</div>
+  </main>
+</body>
+</html>
